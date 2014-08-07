@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Day" representedClassName="EEEBufferedDay" syncable="YES">
         <attribute name="dateGMT" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="days" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="EEEBufferedEvent" syncable="YES">
@@ -19,7 +20,7 @@
         <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="events" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Day" positionX="-90" positionY="53" width="128" height="88"/>
         <element name="Event" positionX="124" positionY="-16" width="128" height="223"/>
-        <element name="Day" positionX="-90" positionY="53" width="128" height="73"/>
     </elements>
 </model>
