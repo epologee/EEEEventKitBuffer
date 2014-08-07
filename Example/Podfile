@@ -1,0 +1,9 @@
+target 'EEEEventKitBuffer', :exclusive => true do
+  pod "EEEEventKitBuffer", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "EEEEventKitBuffer", :path => "../"
+
+  pod 'Kiwi'
+end
