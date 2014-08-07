@@ -19,14 +19,13 @@ SPEC_BEGIN(EEEEventKitBufferModelSpec)
             sut = [[EEEEventKitBufferModel alloc] init];
         });
 
-        it(@"has a persistent store", ^{
+        it(@"has one persistent store", ^{
             [[[sut.mainContext.persistentStoreCoordinator.persistentStores should] have:1] persistentStore];
         });
 
-        it(@"saves to the main context", ^{
+        it(@"merges changes into the main context", ^{
             NSManagedObjectContext *ctx = [sut newPrivateContext];
-            EEEBufferedDay *day = [EEEBufferedDay insertInManagedObjectContext:ctx];
-            day.dateGMT = [NSDate date];
+            [EEEBufferedDay insertInManagedObjectContext:ctx];
             [[theValue([ctx save:NULL]) should] beYes];
 
             NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[EEEBufferedDay entityName]];

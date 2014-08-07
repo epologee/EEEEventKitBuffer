@@ -1,5 +1,10 @@
 #import "_EEEBufferedEvent.h"
 
+@class EKEvent;
+
 @interface EEEBufferedEvent : _EEEBufferedEvent {}
-// Custom logic goes here.
+
++ (instancetype)bufferEvent:(EKEvent *)event created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx;
+
+- (void)updateEvent:(EKEvent *)event;
 @end
