@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Day" representedClassName="EEEBufferedDay" syncable="YES">
+        <attribute name="dateGMT" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="days" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="EEEBufferedEvent" syncable="YES">
+        <attribute name="allDay" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="availability" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="eventIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasAlarms" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasAttendees" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasNotes" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasRecurrenceRules" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Day" inverseName="events" inverseEntity="Day" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Event" positionX="124" positionY="-16" width="128" height="223"/>
+        <element name="Day" positionX="-90" positionY="53" width="128" height="73"/>
+    </elements>
+</model>
