@@ -1,0 +1,1 @@
+../../../../Pod/Classes/Model/Entities/EEEBufferedEvent.h

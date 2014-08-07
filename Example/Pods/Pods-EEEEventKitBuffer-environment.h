@@ -12,3 +12,9 @@
 #define COCOAPODS_VERSION_MINOR_EEEEventKitBuffer 1
 #define COCOAPODS_VERSION_PATCH_EEEEventKitBuffer 0
 
+// EEEEventKitBuffer/Model
+#define COCOAPODS_POD_AVAILABLE_EEEEventKitBuffer_Model
+#define COCOAPODS_VERSION_MAJOR_EEEEventKitBuffer_Model 0
+#define COCOAPODS_VERSION_MINOR_EEEEventKitBuffer_Model 1
+#define COCOAPODS_VERSION_PATCH_EEEEventKitBuffer_Model 0
+
