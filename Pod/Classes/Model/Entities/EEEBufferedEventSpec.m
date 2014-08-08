@@ -37,7 +37,7 @@ SPEC_BEGIN(EEEBufferedEventSpec)
 
                 beforeEach(^{
                     BOOL created = NO;
-                    bufferedEvent = [EEEBufferedEvent bufferEvent:event created:&created inContext:model.mainContext];
+                    bufferedEvent = [EEEBufferedEvent bufferEvent:event forNumericDay:nil created:&created inContext:model.mainContext];
                     [[theValue([model.mainContext save:NULL]) should] beYes];
                     [[theValue(created) should] beYes];
                     [[bufferedEvent.eventIdentifier should] equal:event.eventIdentifier];
@@ -45,7 +45,7 @@ SPEC_BEGIN(EEEBufferedEventSpec)
 
                 it(@"uniques on event identifier", ^{
                     BOOL created = YES;
-                    [EEEBufferedEvent bufferEvent:event created:&created inContext:model.mainContext];
+                    [EEEBufferedEvent bufferEvent:event forNumericDay:nil created:&created inContext:model.mainContext];
                     [[theValue(created) should] beNo];
                     [[theValue(model.mainContext.hasChanges) should] beNo];
                 });

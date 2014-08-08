@@ -14,18 +14,20 @@ extern const struct EEEBufferedEventAttributes {
 	__unsafe_unretained NSString *hasNotes;
 	__unsafe_unretained NSString *hasRecurrenceRules;
 	__unsafe_unretained NSString *location;
+	__unsafe_unretained NSString *numericDay;
 	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *title;
 } EEEBufferedEventAttributes;
 
 extern const struct EEEBufferedEventRelationships {
-	__unsafe_unretained NSString *days;
+	__unsafe_unretained NSString *day;
 } EEEBufferedEventRelationships;
 
 extern const struct EEEBufferedEventFetchedProperties {
 } EEEBufferedEventFetchedProperties;
 
 @class EEEBufferedDay;
+
 
 
 
@@ -166,6 +168,20 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* numericDay;
+
+
+
+@property int32_t numericDayValue;
+- (int32_t)numericDayValue;
+- (void)setNumericDayValue:(int32_t)value_;
+
+//- (BOOL)validateNumericDay:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSDate* startDate;
 
 
@@ -186,9 +202,9 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *days;
+@property (nonatomic, strong) EEEBufferedDay *day;
 
-- (NSMutableSet*)daysSet;
+//- (BOOL)validateDay:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -197,11 +213,6 @@ extern const struct EEEBufferedEventFetchedProperties {
 @end
 
 @interface _EEEBufferedEvent (CoreDataGeneratedAccessors)
-
-- (void)addDays:(NSSet*)value_;
-- (void)removeDays:(NSSet*)value_;
-- (void)addDaysObject:(EEEBufferedDay*)value_;
-- (void)removeDaysObject:(EEEBufferedDay*)value_;
 
 @end
 
@@ -280,6 +291,15 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 
 
+- (NSNumber*)primitiveNumericDay;
+- (void)setPrimitiveNumericDay:(NSNumber*)value;
+
+- (int32_t)primitiveNumericDayValue;
+- (void)setPrimitiveNumericDayValue:(int32_t)value_;
+
+
+
+
 - (NSDate*)primitiveStartDate;
 - (void)setPrimitiveStartDate:(NSDate*)value;
 
@@ -293,8 +313,8 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveDays;
-- (void)setPrimitiveDays:(NSMutableSet*)value;
+- (EEEBufferedDay*)primitiveDay;
+- (void)setPrimitiveDay:(EEEBufferedDay*)value;
 
 
 @end

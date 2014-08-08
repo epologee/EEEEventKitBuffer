@@ -1,3 +1,4 @@
+#import <Kiwi/Kiwi.h>
 #import "EEEEventStoreHelper.h"
 #import "EEEEventStoreHelperEventWrapper.h"
 #import "_EEEBufferedEvent.h"

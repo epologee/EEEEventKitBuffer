@@ -2,9 +2,12 @@ PODS:
   - EEEEventKitBuffer (0.1.0):
     - EEEEventKitBuffer/Buffering
     - EEEEventKitBuffer/Model
+    - EEEEventKitBuffer/TableView
   - EEEEventKitBuffer/Buffering (0.1.0):
     - EEEEventKitBuffer/Model
   - EEEEventKitBuffer/Model (0.1.0)
+  - EEEEventKitBuffer/TableView (0.1.0):
+    - EEEEventKitBuffer/Buffering
   - Kiwi (2.3.0)
 
 DEPENDENCIES:
@@ -16,7 +19,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  EEEEventKitBuffer: 5170a38e70ad46498518284ddd8cb95b331963bc
+  EEEEventKitBuffer: cc8c8ffd7d3244638ac5a5151362378192b2b2b3
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
 
 COCOAPODS: 0.33.1

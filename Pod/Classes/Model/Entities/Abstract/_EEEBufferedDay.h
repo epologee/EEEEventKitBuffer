@@ -6,7 +6,7 @@
 
 extern const struct EEEBufferedDayAttributes {
 	__unsafe_unretained NSString *dateGMT;
-	__unsafe_unretained NSString *numericDate;
+	__unsafe_unretained NSString *numericDay;
 	__unsafe_unretained NSString *title;
 } EEEBufferedDayAttributes;
 
@@ -46,15 +46,15 @@ extern const struct EEEBufferedDayFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* numericDate;
+@property (nonatomic, strong) NSNumber* numericDay;
 
 
 
-@property int32_t numericDateValue;
-- (int32_t)numericDateValue;
-- (void)setNumericDateValue:(int32_t)value_;
+@property int32_t numericDayValue;
+- (int32_t)numericDayValue;
+- (void)setNumericDayValue:(int32_t)value_;
 
-//- (BOOL)validateNumericDate:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateNumericDay:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -98,11 +98,11 @@ extern const struct EEEBufferedDayFetchedProperties {
 
 
 
-- (NSNumber*)primitiveNumericDate;
-- (void)setPrimitiveNumericDate:(NSNumber*)value;
+- (NSNumber*)primitiveNumericDay;
+- (void)setPrimitiveNumericDay:(NSNumber*)value;
 
-- (int32_t)primitiveNumericDateValue;
-- (void)setPrimitiveNumericDateValue:(int32_t)value_;
+- (int32_t)primitiveNumericDayValue;
+- (void)setPrimitiveNumericDayValue:(int32_t)value_;
 
 
 

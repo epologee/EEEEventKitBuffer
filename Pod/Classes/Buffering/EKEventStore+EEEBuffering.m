@@ -25,17 +25,19 @@
         runnerComponents.day = startComponents.day + day;
         NSDate *dayDate = [calendar dateFromComponents:runnerComponents];
         EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueForDate:dayDate calendar:calendar inContext:ctx];
-        bufferedDay.events = [NSSet setWithArray:[self eee_bufferEventsForDayAtDate:dayDate
-                                                                           calendar:calendar
-                                                                     eventCalendars:eventCalendars
-                                                                          inContext:ctx]];
+        bufferedDay.events = [NSSet setWithArray:[self eee_bufferEventsForNumericDay:bufferedDay.numericDayValue
+                                                                              atDate:dayDate
+                                                                            calendar:calendar
+                                                                      eventCalendars:eventCalendars
+                                                                           inContext:ctx]];
     }
 }
 
-- (NSMutableArray *)eee_bufferEventsForDayAtDate:(NSDate *)dayDate
-                                        calendar:(NSCalendar *)calendar
-                                  eventCalendars:(NSArray *)eventCalendars
-                                       inContext:(NSManagedObjectContext *)ctx
+- (NSMutableArray *)eee_bufferEventsForNumericDay:(NSInteger)numericDay
+                                           atDate:(NSDate *)dayDate
+                                         calendar:(NSCalendar *)calendar
+                                   eventCalendars:(NSArray *)eventCalendars
+                                        inContext:(NSManagedObjectContext *)ctx
 {
     NSDate *startDate = [calendar eee_firstSecondOfDate:dayDate];
     NSDate *endDate = [calendar eee_lastSecondOfDate:dayDate];
@@ -44,7 +46,7 @@
     NSMutableArray *bufferedEvents = [NSMutableArray arrayWithCapacity:events.count];
     [events enumerateObjectsUsingBlock:^(EKEvent *event, NSUInteger idx, BOOL *stop) {
         BOOL created = NO;
-        EEEBufferedEvent *bufferedEvent = [EEEBufferedEvent bufferEvent:event created:&created inContext:ctx];
+        EEEBufferedEvent *bufferedEvent = [EEEBufferedEvent bufferEvent:event forNumericDay:numericDay created:&created inContext:ctx];
         [bufferedEvents addObject:bufferedEvent];
     }];
 

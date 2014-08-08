@@ -10,7 +10,7 @@
 SPEC_BEGIN(EEEBufferedDaySpec)
     describe(@"EEEBufferedDay", ^{
         beforeAll(^{
-            expectEventStoreAccess();
+//            expectEventStoreAccess();
         });
 
         __block EEEEventKitBufferModel *model;
@@ -72,11 +72,11 @@ SPEC_BEGIN(EEEBufferedDaySpec)
                         return [a.startDate compare:b.startDate];
                     }];
                     bufferedEvent = bufferedEvents[0];
-                    bufferedDay = [bufferedEvent.days anyObject];
+                    bufferedDay = bufferedEvent.day;
                 });
 
                 it(@"sets a numeric date, for sorting", ^{
-                    [[bufferedDay.numericDate should] equal:@20140801];
+                    [[bufferedDay.numericDay should] equal:@20140801];
                 });
 
                 it(@"sets title, to display", ^{

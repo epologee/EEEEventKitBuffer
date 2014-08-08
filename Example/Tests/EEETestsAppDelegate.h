@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-@interface EEEAppDelegate : UIResponder <UIApplicationDelegate>
+@interface EEETestsAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property(strong, nonatomic) UIWindow *window;
 

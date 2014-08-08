@@ -24,3 +24,15 @@
 #define COCOAPODS_VERSION_MINOR_EEEEventKitBuffer_Model 1
 #define COCOAPODS_VERSION_PATCH_EEEEventKitBuffer_Model 0
 
+// EEEEventKitBuffer/TableView
+#define COCOAPODS_POD_AVAILABLE_EEEEventKitBuffer_TableView
+#define COCOAPODS_VERSION_MAJOR_EEEEventKitBuffer_TableView 0
+#define COCOAPODS_VERSION_MINOR_EEEEventKitBuffer_TableView 1
+#define COCOAPODS_VERSION_PATCH_EEEEventKitBuffer_TableView 0
+
+// Kiwi
+#define COCOAPODS_POD_AVAILABLE_Kiwi
+#define COCOAPODS_VERSION_MAJOR_Kiwi 2
+#define COCOAPODS_VERSION_MINOR_Kiwi 3
+#define COCOAPODS_VERSION_PATCH_Kiwi 0
+

@@ -17,9 +17,9 @@
 {
     BOOL created = NO;
     NSDateComponents *dayComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
-    NSInteger numericDate = dayComponents.year * 10000 + dayComponents.month * 100 + dayComponents.day;
-    EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueEntityWithValue:@(numericDate)
-                                                                 forKey:EEEBufferedDayAttributes.numericDate
+    NSInteger numericDay = dayComponents.year * 10000 + dayComponents.month * 100 + dayComponents.day;
+    EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueEntityWithValue:@(numericDay)
+                                                                 forKey:EEEBufferedDayAttributes.numericDay
                                                                 created:&created
                                                               inContext:ctx];
     if (created)

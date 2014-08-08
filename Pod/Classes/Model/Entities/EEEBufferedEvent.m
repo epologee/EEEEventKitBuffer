@@ -7,12 +7,16 @@
 
 @implementation EEEBufferedEvent
 
-+ (instancetype)bufferEvent:(EKEvent *)event created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx
++ (instancetype)bufferEvent:(EKEvent *)event forNumericDay:(NSInteger)numericDay created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx
 {
-    EEEBufferedEvent *bufferedEvent = [self uniqueEntityWithValue:event.eventIdentifier
-                                                           forKey:EEEBufferedEventAttributes.eventIdentifier
-                                                          created:created
-                                                        inContext:ctx];
+    NSDictionary *keyedValues = @{
+            EEEBufferedEventAttributes.eventIdentifier : event.eventIdentifier,
+            EEEBufferedEventAttributes.numericDay : @(numericDay)
+    };
+
+    EEEBufferedEvent *bufferedEvent = [self uniqueEntityWithKeyedValues:keyedValues
+                                                                created:created
+                                                              inContext:ctx];
     [bufferedEvent updateEvent:event];
     return bufferedEvent;
 }

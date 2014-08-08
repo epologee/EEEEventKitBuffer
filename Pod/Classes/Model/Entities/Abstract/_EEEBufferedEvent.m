@@ -13,12 +13,13 @@ const struct EEEBufferedEventAttributes EEEBufferedEventAttributes = {
 	.hasNotes = @"hasNotes",
 	.hasRecurrenceRules = @"hasRecurrenceRules",
 	.location = @"location",
+	.numericDay = @"numericDay",
 	.startDate = @"startDate",
 	.title = @"title",
 };
 
 const struct EEEBufferedEventRelationships EEEBufferedEventRelationships = {
-	.days = @"days",
+	.day = @"day",
 };
 
 const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties = {
@@ -77,6 +78,11 @@ const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties
 	}
 	if ([key isEqualToString:@"hasRecurrenceRulesValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"hasRecurrenceRules"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"numericDayValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"numericDay"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -264,6 +270,32 @@ const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties
 
 
 
+@dynamic numericDay;
+
+
+
+- (int32_t)numericDayValue {
+	NSNumber *result = [self numericDay];
+	return [result intValue];
+}
+
+- (void)setNumericDayValue:(int32_t)value_ {
+	[self setNumericDay:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveNumericDayValue {
+	NSNumber *result = [self primitiveNumericDay];
+	return [result intValue];
+}
+
+- (void)setPrimitiveNumericDayValue:(int32_t)value_ {
+	[self setPrimitiveNumericDay:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
 @dynamic startDate;
 
 
@@ -278,17 +310,8 @@ const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties
 
 
 
-@dynamic days;
+@dynamic day;
 
-	
-- (NSMutableSet*)daysSet {
-	[self willAccessValueForKey:@"days"];
-  
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"days"];
-  
-	[self didAccessValueForKey:@"days"];
-	return result;
-}
 	
 
 

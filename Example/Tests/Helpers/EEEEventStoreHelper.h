@@ -14,6 +14,7 @@
 @protocol EEEBlockChainEvent
 
 @property(nonatomic, readonly) id <EEEBlockChainEvent> (^startDate)(NSDate *startDate);
+@property(nonatomic, readonly) id <EEEBlockChainEvent> (^endDate)(NSDate *startDate);
 @property(nonatomic, readonly) id <EEEBlockChainEvent> (^title)(NSString *title);
 @property(nonatomic, readonly) id <EEEBlockChainEvent> (^location)(NSString *location);
 @property(nonatomic, readonly) id <EEEBlockChainEvent> (^allDay)(BOOL allDay);

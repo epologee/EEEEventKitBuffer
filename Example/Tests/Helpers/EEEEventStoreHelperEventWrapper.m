@@ -1,3 +1,4 @@
+#import <Kiwi/Kiwi.h>
 #import "EEEEventStoreHelperEventWrapper.h"
 
 @interface EEEEventStoreHelperEventWrapper ()
@@ -25,6 +26,14 @@
     return ^id <EEEBlockChainEvent>(NSDate *startDate) {
         self.event.startDate = startDate;
         self.event.endDate = [startDate dateByAddingTimeInterval:60 * 60];
+        return self;
+    };
+}
+
+- (id <EEEBlockChainEvent> (^)(NSDate *))endDate
+{
+    return ^id <EEEBlockChainEvent>(NSDate *endDate) {
+        self.event.endDate = endDate;
         return self;
     };
 }

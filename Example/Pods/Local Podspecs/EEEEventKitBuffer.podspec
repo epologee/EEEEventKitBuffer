@@ -33,6 +33,12 @@ Pod::Spec.new do |s|
     sb.exclude_files = 'Pod/Classes/Buffering/**/*Spec.m'
   end
 
+  s.subspec 'TableView' do |stv|
+    stv.dependency 'EEEEventKitBuffer/Buffering'
+    stv.source_files = 'Pod/Classes/TableView/**/*.{h,m}'
+    stv.exclude_files = 'Pod/Classes/TableView/**/*Spec.m'
+  end
+
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'EventKit', 'CoreData'
   # s.dependency 'AFNetworking', '~> 2.3'

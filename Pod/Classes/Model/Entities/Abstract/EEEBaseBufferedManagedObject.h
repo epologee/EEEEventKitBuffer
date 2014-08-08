@@ -7,6 +7,8 @@
 
 + (instancetype)uniqueEntityWithValue:(id)value forKey:(NSString *)key created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx;
 
++ (instancetype)uniqueEntityWithKeyedValues:(NSDictionary *)keyedValues created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx;
+
 + (NSFetchRequest *)fetchRequest;
 
 @end

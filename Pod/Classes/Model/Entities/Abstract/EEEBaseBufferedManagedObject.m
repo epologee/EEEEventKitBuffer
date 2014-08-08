@@ -14,9 +14,21 @@
 
 + (instancetype)uniqueEntityWithValue:(id)value forKey:(NSString *)key created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx
 {
+    return [self uniqueEntityWithKeyedValues:@{key : value} created:created inContext:ctx];
+}
+
++ (instancetype)uniqueEntityWithKeyedValues:(NSDictionary *)keyedValues created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx
+{
     NSFetchRequest *request = [self fetchRequest];
-    NSString *format = [NSString stringWithFormat:@"%@ == %%@", key];
-    request.predicate = [NSPredicate predicateWithFormat:format, value];
+    NSMutableArray *formats = [NSMutableArray array];
+    NSMutableArray *values = [NSMutableArray array];
+    [keyedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
+        [formats addObject:[NSString stringWithFormat:@"%@ == %%@", key]];
+        [values addObject:value];
+    }];
+
+    NSString *format = [formats componentsJoinedByString:@" AND "];
+    request.predicate = [NSPredicate predicateWithFormat:format argumentArray:values];
     request.fetchLimit = 1;
 
     NSError *error = nil;
@@ -30,7 +42,9 @@
     }
 
     entity = [self insertInManagedObjectContext:ctx];
-    [entity setValue:value forKey:key];
+    [keyedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
+        [entity setValue:value forKey:key];
+    }];
     if (created) *created = YES;
     return entity;
 }
