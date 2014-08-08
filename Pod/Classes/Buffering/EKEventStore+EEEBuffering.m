@@ -20,9 +20,9 @@
                                    toDate:endDate
                                   options:0].day;
 
-    for (NSInteger day = 0; day < days; day++)
+    for (NSInteger day = 0; day <= days; day++)
     {
-        runnerComponents.day += day;
+        runnerComponents.day = startComponents.day + day;
         NSDate *dayDate = [calendar dateFromComponents:runnerComponents];
         EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueForDate:dayDate calendar:calendar inContext:ctx];
         bufferedDay.events = [NSSet setWithArray:[self eee_bufferEventsForDayAtDate:dayDate

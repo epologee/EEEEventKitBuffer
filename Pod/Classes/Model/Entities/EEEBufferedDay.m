@@ -7,7 +7,7 @@
 
 @implementation EEEBufferedDay
 
-- (void)updateForDate:(NSDate *)date withComponents:(NSDateComponents *)components calendar:(NSCalendar *)calendar
+- (void)updateForDate:(NSDate *)date calendar:(NSCalendar *)calendar
 {
     self.dateGMT = date;
     self.title = [[calendar eee_bufferedDayTitleFormatter] stringFromDate:date];
@@ -24,7 +24,7 @@
                                                               inContext:ctx];
     if (created)
     {
-        [bufferedDay updateForDate:date withComponents:dayComponents calendar:calendar];
+        [bufferedDay updateForDate:date calendar:calendar];
     }
 
     return bufferedDay;

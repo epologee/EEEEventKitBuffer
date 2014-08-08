@@ -2,7 +2,7 @@
 
 @interface EEEEventStoreHelperEventWrapper ()
 
-@property (nonatomic, strong) EKEvent *event;
+@property(nonatomic, strong) EKEvent *event;
 
 @end
 

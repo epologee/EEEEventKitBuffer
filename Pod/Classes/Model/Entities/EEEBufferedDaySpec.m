@@ -5,6 +5,7 @@
 #import "EEEBufferedDay.h"
 #import "EEEBufferedEvent.h"
 #import "NSDate+EEEHelper.h"
+#import "NSCalendar+EEEDateCalculations.h"
 
 SPEC_BEGIN(EEEBufferedDaySpec)
     describe(@"EEEBufferedDay", ^{
@@ -21,22 +22,21 @@ SPEC_BEGIN(EEEBufferedDaySpec)
         });
 
         context(@"with several fake events", ^{
-            __block NSDate *now;
-            __block NSDate *then;
+            __block NSDate *startDate;
+            __block NSDate *endDate;
 
             beforeEach(^{
                 NSCalendar *cal = [NSCalendar currentCalendar];
-                now = [NSDate eee_dateForYear:2014 month:8 day:1];
+                startDate = [NSDate eee_dateForYear:2014 month:8 day:1];
                 NSDateComponents *runner = [[NSDateComponents alloc] init];
                 for (int i = 0; i < 10; i++)
                 {
                     runner.day = i / 2;
                     runner.hour = i % 2;
 
-                    then = [cal dateByAddingComponents:runner toDate:now options:0];
-                    [[then shouldNot] beNil];
+                    NSDate *date = [cal dateByAddingComponents:runner toDate:startDate options:0];
                     eventStore.addFakeEvent.
-                            startDate(then).
+                            startDate(date).
                             title([NSString stringWithFormat:@"Appointment #%li", (long) runner.day]).
                             location(@"Halfweg").
                             allDay(YES).
@@ -44,9 +44,12 @@ SPEC_BEGIN(EEEBufferedDaySpec)
                             hasNotes(YES).
                             hasRecurrenceRules(YES).
                             addRelativeAlarm(-15 * 60);
+
+                    endDate = [cal eee_lastSecondOfDate:date];
                 }
 
-                [eventStore eee_bufferEventsFromStartDate:now toEndDate:then calendars:nil inContext:model.mainContext];
+                [eventStore eee_bufferEventsFromStartDate:startDate toEndDate:endDate calendars:nil inContext:model.mainContext];
+                [[theValue([model.mainContext save:NULL]) should] beYes];
             });
 
             it(@"creates buffered events", ^{
@@ -56,15 +59,29 @@ SPEC_BEGIN(EEEBufferedDaySpec)
 
             it(@"creates buffered days", ^{
                 NSArray *bufferedDays = [EEEBufferedDay allObjectsInContext:model.mainContext error:NULL];
-                [[bufferedDays should] haveCountOf:4];
+                [[bufferedDays should] haveCountOf:5];
             });
 
-            it(@"associates buffered days to events", ^{
-                NSArray *bufferedEvents = [EEEBufferedEvent allObjectsInContext:model.mainContext error:NULL];
-                EEEBufferedEvent *bufferedEvent = [bufferedEvents lastObject];
-                EEEBufferedDay *bufferedDay = [bufferedEvent.days anyObject];
-                [[bufferedDay shouldNot] beNil];
-                [[bufferedDay.title should] equal:@"August 1, 2014"];
+            context(@"associating buffered days with events", ^{
+                __block EEEBufferedEvent *bufferedEvent;
+                __block EEEBufferedDay *bufferedDay;
+
+                beforeEach(^{
+                    NSArray *bufferedEvents = [EEEBufferedEvent allObjectsInContext:model.mainContext error:NULL];
+                    bufferedEvents = [bufferedEvents sortedArrayUsingComparator:^NSComparisonResult(EEEBufferedEvent *a, EEEBufferedEvent *b) {
+                        return [a.startDate compare:b.startDate];
+                    }];
+                    bufferedEvent = bufferedEvents[0];
+                    bufferedDay = [bufferedEvent.days anyObject];
+                });
+
+                it(@"sets a numeric date, for sorting", ^{
+                    [[bufferedDay.numericDate should] equal:@20140801];
+                });
+
+                it(@"sets title, to display", ^{
+                    [[bufferedDay.title should] equal:@"August 1, 2014"];
+                });
             });
         });
     });

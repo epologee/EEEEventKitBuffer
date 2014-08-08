@@ -1,5 +1,6 @@
 #import "EEEEventStoreHelper.h"
 #import "EEEEventStoreHelperEventWrapper.h"
+#import "_EEEBufferedEvent.h"
 
 @interface EEEEventStoreHelper ()
 
@@ -11,7 +12,35 @@
 
 - (NSArray *)eventsMatchingPredicate:(NSPredicate *)predicate
 {
-    return [self.fakeEvents allObjects];
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    NSDateFormatter *reverseFormatter = [[NSDateFormatter alloc] init];
+    reverseFormatter.calendar = cal;
+    reverseFormatter.timeZone = cal.timeZone;
+    reverseFormatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"dMyhm" options:0 locale:[NSLocale currentLocale]];
+
+    NSDate *lowerBounds;
+    {
+        NSRegularExpression *startRegEx = [NSRegularExpression regularExpressionWithPattern:@"(?<=start:)([^;]+);" options:0 error:NULL];
+        NSTextCheckingResult *startResult = [startRegEx firstMatchInString:predicate.predicateFormat
+                                                                   options:NSMatchingWithTransparentBounds
+                                                                     range:NSMakeRange(0, [predicate.predicateFormat length])];
+        NSString *startString = [predicate.predicateFormat substringWithRange:[startResult rangeAtIndex:1]];
+        lowerBounds = [reverseFormatter dateFromString:startString];
+    }
+
+    NSDate *upperBounds;
+    {
+        NSRegularExpression *endRegEx = [NSRegularExpression regularExpressionWithPattern:@"(?<=end:)([^;]+);" options:0 error:NULL];
+        NSTextCheckingResult *endResult = [endRegEx firstMatchInString:predicate.predicateFormat
+                                                               options:NSMatchingWithTransparentBounds
+                                                                 range:NSMakeRange(0, [predicate.predicateFormat length])];
+        NSString *endString = [predicate.predicateFormat substringWithRange:[endResult rangeAtIndex:1]];
+        upperBounds = [reverseFormatter dateFromString:endString];
+    }
+
+    NSString *format = [NSString stringWithFormat:@"%@ <= %%@ AND %%@ <= %@", EEEBufferedEventAttributes.startDate, EEEBufferedEventAttributes.endDate];
+    NSPredicate *entityPredicate = [NSPredicate predicateWithFormat:format, upperBounds, lowerBounds];
+    return [[self.fakeEvents filteredSetUsingPredicate:entityPredicate] allObjects];
 }
 
 - (NSMutableSet *)fakeEvents
