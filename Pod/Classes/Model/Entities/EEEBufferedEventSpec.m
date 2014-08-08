@@ -14,7 +14,7 @@ SPEC_BEGIN(EEEBufferedEventSpec)
                 resumed = YES;
             }];
 
-            [[expectFutureValue(theValue(resumed)) shouldEventuallyBeforeTimingOutAfter(20)] beYes];
+            [[expectFutureValue(theValue(resumed)) shouldEventuallyBeforeTimingOutAfter(30)] beYes];
             [[theValue(granted) should] beYes];
         });
 
@@ -26,24 +26,59 @@ SPEC_BEGIN(EEEBufferedEventSpec)
             model = [[EEEEventKitBufferModel alloc] init];
         });
 
-        it(@"uniques events", ^{
-            EKEvent *event = [EKEvent eventWithEventStore:eventStore];
-            event.startDate = [NSDate date];
-            event.endDate = [event.startDate dateByAddingTimeInterval:60 * 60];
-            event.calendar = eventStore.defaultCalendarForNewEvents;
-            NSError *saveError = nil;
-            BOOL saved = [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&saveError];
-            [[theValue(saved) should] beYes];
-            [[saveError should] beNil];
-            [[event.eventIdentifier shouldNot] beNil];
+        context(@"with an event", ^{
+            __block EKEvent *event;
 
-            BOOL created = NO;
-            EEEBufferedEvent *bufferedEvent = [EEEBufferedEvent bufferEvent:event created:&created inContext:model.mainContext];
-            [[theValue(created) should] beYes];
-            [[bufferedEvent.eventIdentifier should] equal:event.eventIdentifier];
+            beforeEach(^{
+                event = [EKEvent eventWithEventStore:eventStore];
+                event.startDate = [NSDate date];
+                event.endDate = [event.startDate dateByAddingTimeInterval:60 * 60];
+                event.location = @"Halfweg";
+                event.title = @"Appointment";
+                event.allDay = YES;
+                [event addAlarm:[EKAlarm alarmWithRelativeOffset:-15 * 60]];
+                [event stub:@selector(hasAttendees) andReturn:theValue(YES)];
+                [event stub:@selector(hasNotes) andReturn:theValue(YES)];
+                [event stub:@selector(hasRecurrenceRules) andReturn:theValue(YES)];
 
-            [EEEBufferedEvent bufferEvent:event created:&created inContext:model.mainContext];
-            [[theValue(created) should] beNo];
+                event.calendar = eventStore.defaultCalendarForNewEvents;
+
+                NSError *saveError = nil;
+                BOOL saved = [eventStore saveEvent:event span:EKSpanThisEvent commit:YES error:&saveError];
+                [[theValue(saved) should] beYes];
+                [[saveError should] beNil];
+                [[event.eventIdentifier shouldNot] beNil];
+            });
+
+            context(@"which is then buffered", ^{
+                __block EEEBufferedEvent *bufferedEvent;
+
+                beforeEach(^{
+                    BOOL created = NO;
+                    bufferedEvent = [EEEBufferedEvent bufferEvent:event created:&created inContext:model.mainContext];
+                    [[theValue(created) should] beYes];
+                    [[bufferedEvent.eventIdentifier should] equal:event.eventIdentifier];
+                });
+
+                it(@"uniques on event identifier", ^{
+                    BOOL created = YES;
+                    [EEEBufferedEvent bufferEvent:event created:&created inContext:model.mainContext];
+                    [[theValue(created) should] beNo];
+                });
+
+                describe(@"properties", ^{
+                    it(@"allDay", ^{[[theValue(bufferedEvent.allDayValue) should] equal:theValue(event.allDay)];});
+                    it(@"availability", ^{[[theValue(bufferedEvent.availabilityValue) should] equal:theValue(event.availability)];});
+                    it(@"endDate", ^{[[bufferedEvent.endDate should] equal:event.endDate];});
+                    it(@"hasAlarms", ^{[[theValue(bufferedEvent.hasAlarmsValue) should] equal:theValue(event.hasAlarms)];});
+                    it(@"hasAttendees", ^{[[theValue(bufferedEvent.hasAttendeesValue) should] equal:theValue(event.hasAttendees)];});
+                    it(@"hasNotes", ^{[[theValue(bufferedEvent.hasNotesValue) should] equal:theValue(event.hasNotes)];});
+                    it(@"hasRecurrenceRules", ^{[[theValue(bufferedEvent.hasRecurrenceRulesValue) should] equal:theValue(event.hasRecurrenceRules)];});
+                    it(@"location", ^{[[bufferedEvent.location should] equal:event.location];});
+                    it(@"startDate", ^{[[bufferedEvent.startDate should] equal:event.startDate];});
+                    it(@"title", ^{[[bufferedEvent.title should] equal:event.title];});
+                });
+            });
         });
     });
 SPEC_END
