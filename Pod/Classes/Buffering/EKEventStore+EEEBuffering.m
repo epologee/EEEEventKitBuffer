@@ -2,12 +2,13 @@
 #import "EKEventStore+EEEBuffering.h"
 #import "EEEBufferedDay.h"
 #import "EEEBufferedEvent.h"
+#import "NSCalendar+EEEDateCalculations.h"
 
 @implementation EKEventStore (EEEBuffering)
 
 - (void)eee_bufferEventsFromStartDate:(NSDate *)startDate
                             toEndDate:(NSDate *)endDate
-                            calendars:(NSArray *)calendars
+                            calendars:(NSArray *)eventCalendars
                             inContext:(NSManagedObjectContext *)ctx
 {
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -23,25 +24,30 @@
     {
         runnerComponents.day += day;
         NSDate *dayDate = [calendar dateFromComponents:runnerComponents];
-        NSDateComponents *dayComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:dayDate];
-        NSInteger numericDate = dayComponents.year * 10000 + dayComponents.month * 100 + dayComponents.day;
-        BOOL created = NO;
-        EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueEntityWithValue:@(numericDate)
-                                                                     forKey:EEEBufferedDayAttributes.numericDate
-                                                                    created:&created
-                                                                  inContext:ctx];
-        if (created)
-        {
-            [bufferedDay updateForDate:dayDate withComponents:dayComponents];
-        }
+        EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueForDate:dayDate calendar:calendar inContext:ctx];
+        bufferedDay.events = [NSSet setWithArray:[self eee_bufferEventsForDayAtDate:dayDate
+                                                                           calendar:calendar
+                                                                     eventCalendars:eventCalendars
+                                                                          inContext:ctx]];
     }
+}
 
-    NSPredicate *predicate = [self predicateForEventsWithStartDate:startDate endDate:endDate calendars:calendars];
+- (NSMutableArray *)eee_bufferEventsForDayAtDate:(NSDate *)dayDate
+                                        calendar:(NSCalendar *)calendar
+                                  eventCalendars:(NSArray *)eventCalendars
+                                       inContext:(NSManagedObjectContext *)ctx
+{
+    NSDate *startDate = [calendar eee_firstSecondOfDate:dayDate];
+    NSDate *endDate = [calendar eee_lastSecondOfDate:dayDate];
+    NSPredicate *predicate = [self predicateForEventsWithStartDate:startDate endDate:endDate calendars:eventCalendars];
     NSArray *events = [self eventsMatchingPredicate:predicate];
+    NSMutableArray *bufferedEvents = [NSMutableArray arrayWithCapacity:events.count];
     [events enumerateObjectsUsingBlock:^(EKEvent *event, NSUInteger idx, BOOL *stop) {
         BOOL created = NO;
         EEEBufferedEvent *bufferedEvent = [EEEBufferedEvent bufferEvent:event created:&created inContext:ctx];
+        [bufferedEvents addObject:bufferedEvent];
     }];
-}
 
+    return bufferedEvents;
+}
 @end

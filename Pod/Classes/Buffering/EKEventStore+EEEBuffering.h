@@ -7,7 +7,7 @@
 
 - (void)eee_bufferEventsFromStartDate:(NSDate *)startDate
                             toEndDate:(NSDate *)endDate
-                            calendars:(NSArray *)calendars
+                            calendars:(NSArray *)eventCalendars
                             inContext:(NSManagedObjectContext *)ctx;
 
 @end

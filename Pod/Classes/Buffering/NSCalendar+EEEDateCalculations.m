@@ -18,4 +18,24 @@
     return [self eee_date:date isEqualToOtherDate:otherDate forUnits:NSYearCalendarUnit | NSMonthCalendarUnit | NSCalendarUnitDay];
 }
 
+- (NSDate *)eee_firstSecondOfDate:(NSDate *)date
+{
+    NSDate *beginning = nil;
+    if (![self rangeOfUnit:NSCalendarUnitDay startDate:&beginning interval:NULL forDate:date])
+    {
+        [NSException raise:@"NSCalendar+EEEDateCalculationsException" format:@"Could not find beginning for date %@", date];
+    }
+
+    return beginning;
+}
+
+- (NSDate *)eee_lastSecondOfDate:(NSDate *)date
+{
+    NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+    [oneDay setDay:1];
+    [oneDay setSecond:-1];
+
+    return [self dateByAddingComponents:oneDay toDate:[self eee_firstSecondOfDate:date] options:0];
+}
+
 @end

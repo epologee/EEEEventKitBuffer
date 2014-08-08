@@ -7,7 +7,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.locale = [NSLocale autoupdatingCurrentLocale];
     formatter.timeZone = self.timeZone;
-    formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"dMMM" options:0 locale:formatter.locale];
+    formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"yyyydMMMM" options:0 locale:formatter.locale];
     return formatter;
 }
 

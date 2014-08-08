@@ -29,6 +29,7 @@
 		E4207A8E405618332B5CBD80 /* EEEEventKitBufferModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207D51C29E05294BD88DE5 /* EEEEventKitBufferModelSpec.m */; };
 		E4207C2A74AFF613A2BE9C17 /* NSCalendar+EEEDateCalculations.m in Sources */ = {isa = PBXBuildFile; fileRef = E42074E8F322FE44DD661C33 /* NSCalendar+EEEDateCalculations.m */; };
 		E4207DFADA021CEC3D11FDD9 /* EEEEventStoreHelperEventWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */; };
+		E4207F4016BAE8271E8D029A /* NSDate+EEEHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207CFF92EE549A9B476807 /* NSDate+EEEHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		E42074E8F322FE44DD661C33 /* NSCalendar+EEEDateCalculations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+EEEDateCalculations.m"; sourceTree = "<group>"; };
 		E42075F9003E19253580191C /* EEEEventKitBufferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventKitBufferModel.h; sourceTree = "<group>"; };
 		E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventStoreHelperEventWrapper.m; sourceTree = "<group>"; };
+		E42076F7DABF071610CC35D0 /* NSDate+EEEHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EEEHelper.h"; sourceTree = "<group>"; };
 		E4207861226ADDDD0DC0058A /* NSCalendar+EEEDateCalculations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+EEEDateCalculations.h"; sourceTree = "<group>"; };
 		E42078B7F87890AEA83874AA /* EKEventStore+EEEBuffering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+EEEBuffering.m"; sourceTree = "<group>"; };
 		E42078D30D3FB991839FA73D /* EEEBaseBufferedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBaseBufferedManagedObject.m; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		E42079755AB139367ABDB550 /* NSCalendar+EEEDateFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+EEEDateFormatting.h"; sourceTree = "<group>"; };
 		E4207BBAD0EE6442A452F29E /* EEEEventKitBufferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventKitBufferModel.m; sourceTree = "<group>"; };
 		E4207BD75A7F0C003BCE6BD3 /* EEEEventStoreHelperEventWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventStoreHelperEventWrapper.h; sourceTree = "<group>"; };
+		E4207CFF92EE549A9B476807 /* NSDate+EEEHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EEEHelper.m"; sourceTree = "<group>"; };
 		E4207D0B579705465809D84E /* NSCalendar+EEEDateFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+EEEDateFormatting.m"; sourceTree = "<group>"; };
 		E4207D10AB0E570E63E1964D /* EEEBufferedEventSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedEventSpec.m; sourceTree = "<group>"; };
 		E4207D51C29E05294BD88DE5 /* EEEEventKitBufferModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventKitBufferModelSpec.m; sourceTree = "<group>"; };
@@ -281,6 +284,8 @@
 				E4207F596F88510383846A09 /* EEEEventStoreHelper.h */,
 				E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */,
 				E4207BD75A7F0C003BCE6BD3 /* EEEEventStoreHelperEventWrapper.h */,
+				E4207CFF92EE549A9B476807 /* NSDate+EEEHelper.m */,
+				E42076F7DABF071610CC35D0 /* NSDate+EEEHelper.h */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				E42078D712C0FD848EA2EC63 /* EEEBufferedDaySpec.m in Sources */,
 				E4207A49BB4C235537AF9B76 /* EEEEventStoreHelper.m in Sources */,
 				E4207DFADA021CEC3D11FDD9 /* EEEEventStoreHelperEventWrapper.m in Sources */,
+				E4207F4016BAE8271E8D029A /* NSDate+EEEHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

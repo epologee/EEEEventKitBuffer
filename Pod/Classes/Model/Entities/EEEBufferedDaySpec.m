@@ -4,6 +4,7 @@
 #import "EKEventStore+EEEBuffering.h"
 #import "EEEBufferedDay.h"
 #import "EEEBufferedEvent.h"
+#import "NSDate+EEEHelper.h"
 
 SPEC_BEGIN(EEEBufferedDaySpec)
     describe(@"EEEBufferedDay", ^{
@@ -25,7 +26,7 @@ SPEC_BEGIN(EEEBufferedDaySpec)
 
             beforeEach(^{
                 NSCalendar *cal = [NSCalendar currentCalendar];
-                now = [NSDate date];
+                now = [NSDate eee_dateForYear:2014 month:8 day:1];
                 NSDateComponents *runner = [[NSDateComponents alloc] init];
                 for (int i = 0; i < 10; i++)
                 {
@@ -36,7 +37,7 @@ SPEC_BEGIN(EEEBufferedDaySpec)
                     [[then shouldNot] beNil];
                     eventStore.addFakeEvent.
                             startDate(then).
-                            title([NSString stringWithFormat:@"Appointment #%i", runner.day]).
+                            title([NSString stringWithFormat:@"Appointment #%li", (long) runner.day]).
                             location(@"Halfweg").
                             allDay(YES).
                             hasAttendees(YES).
@@ -61,7 +62,9 @@ SPEC_BEGIN(EEEBufferedDaySpec)
             it(@"associates buffered days to events", ^{
                 NSArray *bufferedEvents = [EEEBufferedEvent allObjectsInContext:model.mainContext error:NULL];
                 EEEBufferedEvent *bufferedEvent = [bufferedEvents lastObject];
-                [[[bufferedEvent.days anyObject] shouldNot] beNil];
+                EEEBufferedDay *bufferedDay = [bufferedEvent.days anyObject];
+                [[bufferedDay shouldNot] beNil];
+                [[bufferedDay.title should] equal:@"August 1, 2014"];
             });
         });
     });
