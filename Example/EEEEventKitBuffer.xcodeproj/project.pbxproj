@@ -25,7 +25,10 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		A8CC7EC59BEE422BB558AA2A /* libPods-EEEEventKitBuffer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0B1D0C25EE41439F3FFF85 /* libPods-EEEEventKitBuffer.a */; };
 		E4207666F7E2A245E773A606 /* EEEBufferedEventSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207D10AB0E570E63E1964D /* EEEBufferedEventSpec.m */; };
+		E42078D712C0FD848EA2EC63 /* EEEBufferedDaySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207E29255D0447E6897619 /* EEEBufferedDaySpec.m */; };
+		E4207A49BB4C235537AF9B76 /* EEEEventStoreHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207351BADD940C470F2A25 /* EEEEventStoreHelper.m */; };
 		E4207A8E405618332B5CBD80 /* EEEEventKitBufferModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207D51C29E05294BD88DE5 /* EEEEventKitBufferModelSpec.m */; };
+		E4207DFADA021CEC3D11FDD9 /* EEEEventStoreHelperEventWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,10 +77,15 @@
 		95027BC91993FF8600B51AB8 /* EEEBufferedEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedEvent.m; sourceTree = "<group>"; };
 		D0DF2648BBD9459481AF76B2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D1D90A421C524D3182B6FD5D /* EEEEventKitBuffer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EEEEventKitBuffer.podspec; path = ../EEEEventKitBuffer.podspec; sourceTree = "<group>"; };
+		E4207351BADD940C470F2A25 /* EEEEventStoreHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventStoreHelper.m; sourceTree = "<group>"; };
 		E42075F9003E19253580191C /* EEEEventKitBufferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventKitBufferModel.h; sourceTree = "<group>"; };
+		E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventStoreHelperEventWrapper.m; sourceTree = "<group>"; };
 		E4207BBAD0EE6442A452F29E /* EEEEventKitBufferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventKitBufferModel.m; sourceTree = "<group>"; };
+		E4207BD75A7F0C003BCE6BD3 /* EEEEventStoreHelperEventWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventStoreHelperEventWrapper.h; sourceTree = "<group>"; };
 		E4207D10AB0E570E63E1964D /* EEEBufferedEventSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedEventSpec.m; sourceTree = "<group>"; };
 		E4207D51C29E05294BD88DE5 /* EEEEventKitBufferModelSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventKitBufferModelSpec.m; sourceTree = "<group>"; };
+		E4207E29255D0447E6897619 /* EEEBufferedDaySpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedDaySpec.m; sourceTree = "<group>"; };
+		E4207F596F88510383846A09 /* EEEEventStoreHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventStoreHelper.h; sourceTree = "<group>"; };
 		EB0B1D0C25EE41439F3FFF85 /* libPods-EEEEventKitBuffer.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EEEEventKitBuffer.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -174,6 +182,7 @@
 			children = (
 				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
+				E42076823A42898EBECCF1C2 /* Helpers */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 				95027BC81993FF8600B51AB8 /* EEEBufferedEvent.h */,
 				95027BC91993FF8600B51AB8 /* EEEBufferedEvent.m */,
 				E4207D10AB0E570E63E1964D /* EEEBufferedEventSpec.m */,
+				E4207E29255D0447E6897619 /* EEEBufferedDaySpec.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -240,6 +250,17 @@
 				95027BC51993FF8600B51AB8 /* _EEEBufferedEvent.m */,
 			);
 			path = Abstract;
+			sourceTree = "<group>";
+		};
+		E42076823A42898EBECCF1C2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E4207351BADD940C470F2A25 /* EEEEventStoreHelper.m */,
+				E4207F596F88510383846A09 /* EEEEventStoreHelper.h */,
+				E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */,
+				E4207BD75A7F0C003BCE6BD3 /* EEEEventStoreHelperEventWrapper.h */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -421,6 +442,9 @@
 				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 				E4207A8E405618332B5CBD80 /* EEEEventKitBufferModelSpec.m in Sources */,
 				E4207666F7E2A245E773A606 /* EEEBufferedEventSpec.m in Sources */,
+				E42078D712C0FD848EA2EC63 /* EEEBufferedDaySpec.m in Sources */,
+				E4207A49BB4C235537AF9B76 /* EEEEventStoreHelper.m in Sources */,
+				E4207DFADA021CEC3D11FDD9 /* EEEEventStoreHelperEventWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
