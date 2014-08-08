@@ -2,7 +2,7 @@
 // Make changes to EEEBufferedEvent.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "EEEBaseBufferedManagedObject.h"
 
 extern const struct EEEBufferedEventAttributes {
 	__unsafe_unretained NSString *allDay;
@@ -42,7 +42,7 @@ extern const struct EEEBufferedEventFetchedProperties {
 @interface EEEBufferedEventID : NSManagedObjectID {}
 @end
 
-@interface _EEEBufferedEvent : NSManagedObject {}
+@interface _EEEBufferedEvent : EEEBaseBufferedManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

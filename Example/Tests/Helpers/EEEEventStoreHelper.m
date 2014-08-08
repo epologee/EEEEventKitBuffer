@@ -9,6 +9,11 @@
 
 @implementation EEEEventStoreHelper
 
+- (NSArray *)eventsMatchingPredicate:(NSPredicate *)predicate
+{
+    return [self.fakeEvents allObjects];
+}
+
 - (NSMutableSet *)fakeEvents
 {
     if (!_fakeEvents)

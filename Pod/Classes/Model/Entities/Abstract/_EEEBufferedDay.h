@@ -2,7 +2,7 @@
 // Make changes to EEEBufferedDay.h instead.
 
 #import <CoreData/CoreData.h>
-
+#import "EEEBaseBufferedManagedObject.h"
 
 extern const struct EEEBufferedDayAttributes {
 	__unsafe_unretained NSString *dateGMT;
@@ -24,7 +24,7 @@ extern const struct EEEBufferedDayFetchedProperties {
 @interface EEEBufferedDayID : NSManagedObjectID {}
 @end
 
-@interface _EEEBufferedDay : NSManagedObject {}
+@interface _EEEBufferedDay : EEEBaseBufferedManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;

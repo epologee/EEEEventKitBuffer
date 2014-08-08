@@ -22,7 +22,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		A8CC7EC59BEE422BB558AA2A /* libPods-EEEEventKitBuffer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0B1D0C25EE41439F3FFF85 /* libPods-EEEEventKitBuffer.a */; };
 		E4207666F7E2A245E773A606 /* EEEBufferedEventSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207D10AB0E570E63E1964D /* EEEBufferedEventSpec.m */; };
 		E42078D712C0FD848EA2EC63 /* EEEBufferedDaySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207E29255D0447E6897619 /* EEEBufferedDaySpec.m */; };
@@ -64,7 +63,6 @@
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		945487D3A3CC471D97A067E0 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		95027BC21993FF8600B51AB8 /* _EEEBufferedDay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _EEEBufferedDay.h; sourceTree = "<group>"; };
@@ -77,9 +75,13 @@
 		95027BC91993FF8600B51AB8 /* EEEBufferedEvent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedEvent.m; sourceTree = "<group>"; };
 		D0DF2648BBD9459481AF76B2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D1D90A421C524D3182B6FD5D /* EEEEventKitBuffer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = EEEEventKitBuffer.podspec; path = ../EEEEventKitBuffer.podspec; sourceTree = "<group>"; };
+		E42071A8D089CDC4B339E8C8 /* EKEventStore+EEEBuffering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EKEventStore+EEEBuffering.h"; sourceTree = "<group>"; };
 		E4207351BADD940C470F2A25 /* EEEEventStoreHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventStoreHelper.m; sourceTree = "<group>"; };
 		E42075F9003E19253580191C /* EEEEventKitBufferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventKitBufferModel.h; sourceTree = "<group>"; };
 		E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventStoreHelperEventWrapper.m; sourceTree = "<group>"; };
+		E42078B7F87890AEA83874AA /* EKEventStore+EEEBuffering.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EKEventStore+EEEBuffering.m"; sourceTree = "<group>"; };
+		E42078D30D3FB991839FA73D /* EEEBaseBufferedManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBaseBufferedManagedObject.m; sourceTree = "<group>"; };
+		E42078D316F75505911B3857 /* EEEBaseBufferedManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEBaseBufferedManagedObject.h; sourceTree = "<group>"; };
 		E4207BBAD0EE6442A452F29E /* EEEEventKitBufferModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEEventKitBufferModel.m; sourceTree = "<group>"; };
 		E4207BD75A7F0C003BCE6BD3 /* EEEEventStoreHelperEventWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventStoreHelperEventWrapper.h; sourceTree = "<group>"; };
 		E4207D10AB0E570E63E1964D /* EEEBufferedEventSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedEventSpec.m; sourceTree = "<group>"; };
@@ -180,7 +182,6 @@
 		6003F5B5195388D20070C39A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5BB195388D20070C39A /* Tests.m */,
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				E42076823A42898EBECCF1C2 /* Helpers */,
 			);
@@ -211,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				95027BBF1993FF8600B51AB8 /* Model */,
+				E420756D1D1DA17918D7D330 /* Buffering */,
 			);
 			name = Classes;
 			path = ../../Pod/Classes;
@@ -248,8 +250,19 @@
 				95027BC31993FF8600B51AB8 /* _EEEBufferedDay.m */,
 				95027BC41993FF8600B51AB8 /* _EEEBufferedEvent.h */,
 				95027BC51993FF8600B51AB8 /* _EEEBufferedEvent.m */,
+				E42078D30D3FB991839FA73D /* EEEBaseBufferedManagedObject.m */,
+				E42078D316F75505911B3857 /* EEEBaseBufferedManagedObject.h */,
 			);
 			path = Abstract;
+			sourceTree = "<group>";
+		};
+		E420756D1D1DA17918D7D330 /* Buffering */ = {
+			isa = PBXGroup;
+			children = (
+				E42078B7F87890AEA83874AA /* EKEventStore+EEEBuffering.m */,
+				E42071A8D089CDC4B339E8C8 /* EKEventStore+EEEBuffering.h */,
+			);
+			path = Buffering;
 			sourceTree = "<group>";
 		};
 		E42076823A42898EBECCF1C2 /* Helpers */ = {
@@ -439,7 +452,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5BC195388D20070C39A /* Tests.m in Sources */,
 				E4207A8E405618332B5CBD80 /* EEEEventKitBufferModelSpec.m in Sources */,
 				E4207666F7E2A245E773A606 /* EEEBufferedEventSpec.m in Sources */,
 				E42078D712C0FD848EA2EC63 /* EEEBufferedDaySpec.m in Sources */,

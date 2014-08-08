@@ -27,6 +27,12 @@ Pod::Spec.new do |s|
     sm.resource_bundles = { 'EEEventKitBufferModel' => 'Pod/Assets/*.xcdatamodeld'}
   end
 
+  s.subspec 'Buffering' do |sb|
+    sb.dependency 'EEEEventKitBuffer/Model'
+    sb.source_files = 'Pod/Classes/Buffering/**/*.{h,m}'
+    sb.exclude_files = 'Pod/Classes/Buffering/**/*Spec.m'
+  end
+
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'EventKit', 'CoreData'
   # s.dependency 'AFNetworking', '~> 2.3'

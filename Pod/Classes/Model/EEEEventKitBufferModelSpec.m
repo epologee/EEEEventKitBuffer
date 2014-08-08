@@ -1,17 +1,8 @@
-//
-//  EEEEventKitBufferModelSpec.m
-//  EEEEventKitBuffer
-//
-//  Created by Eric-Paul Lecluse on 07-08-14.
-//  Copyright 2014 Eric-Paul Lecluse. All rights reserved.
-//
-
 #import <CoreData/CoreData.h>
 #import "EEEEventKitBufferModel.h"
 #import "EEEBufferedDay.h"
 
 SPEC_BEGIN(EEEEventKitBufferModelSpec)
-
     describe(@"EEEEventKitBufferModel", ^{
         __block EEEEventKitBufferModel *sut;
 

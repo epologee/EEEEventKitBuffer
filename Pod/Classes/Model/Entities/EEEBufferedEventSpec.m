@@ -4,7 +4,6 @@
 #import "EEEEventStoreHelper.h"
 
 SPEC_BEGIN(EEEBufferedEventSpec)
-
     describe(@"EEEBufferedEvent", ^{
         beforeAll(^{
             expectEventStoreAccess();

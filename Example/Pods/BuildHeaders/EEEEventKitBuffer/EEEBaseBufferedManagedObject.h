@@ -1,0 +1,1 @@
+../../../../Pod/Classes/Model/Entities/Abstract/EEEBaseBufferedManagedObject.h

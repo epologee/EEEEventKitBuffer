@@ -1,5 +1,4 @@
 #import "_EEEBufferedDay.h"
 
-@interface EEEBufferedDay : _EEEBufferedDay {}
-// Custom logic goes here.
+@interface EEEBufferedDay : _EEEBufferedDay
 @end
