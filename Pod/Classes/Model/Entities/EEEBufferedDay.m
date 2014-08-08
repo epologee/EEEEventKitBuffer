@@ -1,15 +1,16 @@
 #import "EEEBufferedDay.h"
-
+#import "NSCalendar+EEEDateFormatting.h"
 
 @interface EEEBufferedDay ()
 
-// Private interface goes here.
-
 @end
-
 
 @implementation EEEBufferedDay
 
-// Custom logic goes here.
+- (void)updateForDate:(NSDate *)date withComponents:(NSDateComponents *)components
+{
+    self.dateGMT = date;
+    self.title = [[components.calendar eee_bufferedDayTitleFormatter] stringFromDate:date];
+}
 
 @end

@@ -5,6 +5,7 @@
 
 const struct EEEBufferedDayAttributes EEEBufferedDayAttributes = {
 	.dateGMT = @"dateGMT",
+	.numericDate = @"numericDate",
 	.title = @"title",
 };
 
@@ -41,6 +42,11 @@ const struct EEEBufferedDayFetchedProperties EEEBufferedDayFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"numericDateValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"numericDate"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -50,6 +56,32 @@ const struct EEEBufferedDayFetchedProperties EEEBufferedDayFetchedProperties = {
 
 @dynamic dateGMT;
 
+
+
+
+
+
+@dynamic numericDate;
+
+
+
+- (int32_t)numericDateValue {
+	NSNumber *result = [self numericDate];
+	return [result intValue];
+}
+
+- (void)setNumericDateValue:(int32_t)value_ {
+	[self setNumericDate:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveNumericDateValue {
+	NSNumber *result = [self primitiveNumericDate];
+	return [result intValue];
+}
+
+- (void)setPrimitiveNumericDateValue:(int32_t)value_ {
+	[self setPrimitiveNumericDate:[NSNumber numberWithInt:value_]];
+}
 
 
 
