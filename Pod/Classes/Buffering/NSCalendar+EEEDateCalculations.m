@@ -2,6 +2,27 @@
 
 @implementation NSCalendar (EEEDateCalculations)
 
+- (void)eee_enumerateDaysFromStartDate:(NSDate *)startDate
+                             toEndDate:(NSDate *)endDate
+                             withBlock:(void (^)(NSDate *date, NSUInteger idx, BOOL *stop))enumerationBlock
+{
+    NSDateComponents *delta = [self components:NSCalendarUnitDay
+                                      fromDate:startDate
+                                        toDate:endDate
+                                       options:0];
+
+    NSDateComponents *startComponents = [self components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:startDate];
+    NSDateComponents *enumerationComponents = [startComponents copy];
+
+    for (NSUInteger d = 0; d <= delta.day; d++)
+    {
+        enumerationComponents.day = startComponents.day + d;
+        NSDate *date = [self dateFromComponents:enumerationComponents];
+        BOOL stop = NO;
+        enumerationBlock(date, d, &stop);
+    }
+}
+
 - (BOOL)eee_date:(NSDate *)date isEqualToOtherDate:(NSDate *)otherDate forUnits:(NSCalendarUnit)units
 {
     NSDateComponents *simpleDate = [self components:units fromDate:date];

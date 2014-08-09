@@ -15,7 +15,6 @@ extern const struct EEEBufferedEventAttributes {
 	__unsafe_unretained NSString *hasRecurrenceRules;
 	__unsafe_unretained NSString *location;
 	__unsafe_unretained NSString *notes;
-	__unsafe_unretained NSString *numericDay;
 	__unsafe_unretained NSString *startDate;
 	__unsafe_unretained NSString *title;
 } EEEBufferedEventAttributes;
@@ -28,7 +27,6 @@ extern const struct EEEBufferedEventFetchedProperties {
 } EEEBufferedEventFetchedProperties;
 
 @class EEEBufferedCalendar;
-
 
 
 
@@ -180,20 +178,6 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* numericDay;
-
-
-
-@property int32_t numericDayValue;
-- (int32_t)numericDayValue;
-- (void)setNumericDayValue:(int32_t)value_;
-
-//- (BOOL)validateNumericDay:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
 @property (nonatomic, strong) NSDate* startDate;
 
 
@@ -305,15 +289,6 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 - (NSString*)primitiveNotes;
 - (void)setPrimitiveNotes:(NSString*)value;
-
-
-
-
-- (NSNumber*)primitiveNumericDay;
-- (void)setPrimitiveNumericDay:(NSNumber*)value;
-
-- (int32_t)primitiveNumericDayValue;
-- (void)setPrimitiveNumericDayValue:(int32_t)value_;
 
 
 

@@ -6,6 +6,8 @@
 
 @interface NSFetchedResultsController (EEEBufferedEvents)
 
++ (instancetype)eee_bufferedEventsControllerInContext:(NSManagedObjectContext *)ctx;
+
 - (NSInteger)eee_numberOfRowsInSection:(NSInteger)section;
 
 - (NSString *)eee_titleForHeaderInSection:(NSInteger)section;

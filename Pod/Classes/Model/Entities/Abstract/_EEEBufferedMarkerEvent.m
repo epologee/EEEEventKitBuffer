@@ -5,6 +5,7 @@
 
 const struct EEEBufferedMarkerEventAttributes EEEBufferedMarkerEventAttributes = {
 	.isMarker = @"isMarker",
+	.numericDay = @"numericDay",
 };
 
 const struct EEEBufferedMarkerEventRelationships EEEBufferedMarkerEventRelationships = {
@@ -45,6 +46,11 @@ const struct EEEBufferedMarkerEventFetchedProperties EEEBufferedMarkerEventFetch
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"numericDayValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"numericDay"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -72,6 +78,32 @@ const struct EEEBufferedMarkerEventFetchedProperties EEEBufferedMarkerEventFetch
 
 - (void)setPrimitiveIsMarkerValue:(BOOL)value_ {
 	[self setPrimitiveIsMarker:[NSNumber numberWithBool:value_]];
+}
+
+
+
+
+
+@dynamic numericDay;
+
+
+
+- (int32_t)numericDayValue {
+	NSNumber *result = [self numericDay];
+	return [result intValue];
+}
+
+- (void)setNumericDayValue:(int32_t)value_ {
+	[self setNumericDay:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveNumericDayValue {
+	NSNumber *result = [self primitiveNumericDay];
+	return [result intValue];
+}
+
+- (void)setPrimitiveNumericDayValue:(int32_t)value_ {
+	[self setPrimitiveNumericDay:[NSNumber numberWithInt:value_]];
 }
 
 

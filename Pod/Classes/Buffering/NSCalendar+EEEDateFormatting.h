@@ -5,4 +5,5 @@
 - (NSDateFormatter *)eee_bufferedDateFormatter;
 
 - (NSDateFormatter *)eee_bufferedDayFormatter;
+
 @end

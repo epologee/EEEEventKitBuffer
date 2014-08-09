@@ -12,7 +12,7 @@
 {
     NSDictionary *keyedValues = @{
             EEEBufferedEventAttributes.eventIdentifier : event.eventIdentifier,
-            EEEBufferedEventAttributes.numericDay : @(numericDay)
+            EEEBufferedMarkerEventAttributes.numericDay : @(numericDay)
     };
 
     EEEBufferedEvent *bufferedEvent = [self uniqueEntityWithKeyedValues:keyedValues

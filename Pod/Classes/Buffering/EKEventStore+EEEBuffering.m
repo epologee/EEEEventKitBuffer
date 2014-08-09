@@ -43,11 +43,13 @@
     NSDate *endDate = [calendar eee_lastSecondOfDate:dayDate];
     NSPredicate *predicate = [self predicateForEventsWithStartDate:startDate endDate:endDate calendars:eventCalendars];
     NSArray *events = [self eventsMatchingPredicate:predicate];
+    NSLog(@"Event count: %i", [events count]);
     NSMutableArray *bufferedEvents = [NSMutableArray arrayWithCapacity:events.count];
     [events enumerateObjectsUsingBlock:^(EKEvent *event, NSUInteger idx, BOOL *stop) {
         BOOL created = NO;
         EEEBufferedEvent *bufferedEvent = [EEEBufferedEvent bufferEvent:event forNumericDay:numericDay created:&created inContext:ctx];
         [bufferedEvents addObject:bufferedEvent];
+        NSLog(@"Buffered: %@", bufferedEvent);
     }];
 
     return bufferedEvents;

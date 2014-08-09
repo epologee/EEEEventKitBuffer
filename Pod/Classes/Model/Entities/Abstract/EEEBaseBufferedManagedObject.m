@@ -67,7 +67,9 @@
 
 + (NSFetchRequest *)fetchRequest
 {
-    return [[NSFetchRequest alloc] initWithEntityName:[self entityName]];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:[self entityName]];
+    BOOL includes = request.includesSubentities;
+    return request;
 }
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext *)ctx

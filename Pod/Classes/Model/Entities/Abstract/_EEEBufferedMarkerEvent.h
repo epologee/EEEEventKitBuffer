@@ -6,6 +6,7 @@
 
 extern const struct EEEBufferedMarkerEventAttributes {
 	__unsafe_unretained NSString *isMarker;
+	__unsafe_unretained NSString *numericDay;
 } EEEBufferedMarkerEventAttributes;
 
 extern const struct EEEBufferedMarkerEventRelationships {
@@ -16,6 +17,7 @@ extern const struct EEEBufferedMarkerEventFetchedProperties {
 } EEEBufferedMarkerEventFetchedProperties;
 
 @class EEEBufferedDay;
+
 
 
 
@@ -46,6 +48,20 @@ extern const struct EEEBufferedMarkerEventFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* numericDay;
+
+
+
+@property int32_t numericDayValue;
+- (int32_t)numericDayValue;
+- (void)setNumericDayValue:(int32_t)value_;
+
+//- (BOOL)validateNumericDay:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) EEEBufferedDay *day;
 
 //- (BOOL)validateDay:(id*)value_ error:(NSError**)error_;
@@ -68,6 +84,15 @@ extern const struct EEEBufferedMarkerEventFetchedProperties {
 
 - (BOOL)primitiveIsMarkerValue;
 - (void)setPrimitiveIsMarkerValue:(BOOL)value_;
+
+
+
+
+- (NSNumber*)primitiveNumericDay;
+- (void)setPrimitiveNumericDay:(NSNumber*)value;
+
+- (int32_t)primitiveNumericDayValue;
+- (void)setPrimitiveNumericDayValue:(int32_t)value_;
 
 
 

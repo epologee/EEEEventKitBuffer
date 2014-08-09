@@ -1,3 +1,4 @@
+#import <EEEEventKitBuffer/EEEBufferedMarkerEvent.h>
 #import "EEEBufferedDay.h"
 #import "NSCalendar+EEEDateFormatting.h"
 #import "NSCalendar+EEEDateCalculations.h"
@@ -57,6 +58,8 @@
     if (created)
     {
         [bufferedDay updateForDate:date calendar:calendar];
+        NSLog(@"Numeric: %i -> %@", numericDay, bufferedDay);
+        [EEEBufferedMarkerEvent uniqueMarkerEventForNumericDay:numericDay inContext:ctx].day = bufferedDay;
     }
 
     return bufferedDay;

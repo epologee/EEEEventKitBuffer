@@ -25,19 +25,19 @@
         <attribute name="hasRecurrenceRules" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numericDay" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="calendar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Calendar" inverseName="events" inverseEntity="Calendar" syncable="YES"/>
     </entity>
     <entity name="MarkerEvent" representedClassName="EEEBufferedMarkerEvent" syncable="YES">
         <attribute name="isMarker" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="numericDay" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="events" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Calendar" positionX="-2333" positionY="81" width="128" height="118"/>
-        <element name="Day" positionX="-2916" positionY="92" width="128" height="118"/>
-        <element name="Event" positionX="-2529" positionY="-54" width="128" height="253"/>
-        <element name="MarkerEvent" positionX="-2711" positionY="35" width="128" height="73"/>
+        <element name="Calendar" positionX="-2333" positionY="66" width="128" height="118"/>
+        <element name="Day" positionX="-2916" positionY="-9" width="128" height="118"/>
+        <element name="Event" positionX="-2529" positionY="-54" width="128" height="238"/>
+        <element name="MarkerEvent" positionX="-2711" positionY="21" width="128" height="88"/>
     </elements>
 </model>

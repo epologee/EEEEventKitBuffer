@@ -1,14 +1,15 @@
 #import <CoreData/CoreData.h>
 #import <EventKit/EventKit.h>
 #import "EEEEventKitBufferModel.h"
+#import "NSFetchedResultsController+EEEBufferedEvents.h"
+#import "NSCalendar+EEEDateCalculations.h"
 #import <EEEEventKitBuffer/EEEBufferedEvent.h>
-#import <EEEEventKitBuffer/EEEBufferedEvent+NSFetchedResultsController.h>
 #import <EEEEventKitBuffer/EKEventStore+EEEBuffering.h>
 #import <EEEEventKitBuffer/EEEBufferedDay.h>
 
 @interface EEEEventKitBufferModel ()
 
-@property(nonatomic, strong) EKEventStore *mainEventStore;
+@property(nonatomic, strong, readwrite) EKEventStore *mainEventStore;
 @property(nonatomic, strong, readwrite) NSFetchedResultsController *bufferedEventsController;
 @property(nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property(nonatomic, strong) NSManagedObjectModel *managedObjectModel;
@@ -54,7 +55,7 @@
 {
     if (!_bufferedEventsController)
     {
-        self.bufferedEventsController = [EEEBufferedEvent fetchedResultsControllerInContext:self.mainContext];
+        self.bufferedEventsController = [NSFetchedResultsController eee_bufferedEventsControllerInContext:self.mainContext];
     }
 
     return _bufferedEventsController;
@@ -124,8 +125,19 @@
     return _modelBundle;
 }
 
-- (void)bufferEventsForDate:(NSDate *)date withinCalendars:(NSArray *)calendars
+- (void)bufferEventsFromStartDate:(NSDate *)startDate toEndDate:(NSDate *)endDate withinEventCalendars:(NSArray *)calendars
 {
+    NSParameterAssert(![self.mainContext hasChanges]);
+    [[NSCalendar currentCalendar] eee_enumerateDaysFromStartDate:startDate
+                                                       toEndDate:endDate
+                                                       withBlock:^(NSDate *date, NSUInteger idx, BOOL *stop) {
+                                                           [self bufferEventsForDate:date withinEventCalendars:calendars];
+                                                       }];
+}
+
+- (void)bufferEventsForDate:(NSDate *)date withinEventCalendars:(NSArray *)calendars
+{
+//    NSParameterAssert(![self.mainContext hasChanges]);
     dispatch_async([[self class] bufferQueue], ^{
         NSManagedObjectContext *ctx = [self newPrivateContext];
         [[[self class] bufferEventStore] eee_bufferEventsFromStartDate:date
@@ -149,20 +161,10 @@
 - (void)prepareDaysFromStartDate:(NSDate *)startDate toEndDate:(NSDate *)endDate
 {
     NSCalendar *cal = [NSCalendar currentCalendar];
-
-    NSDateComponents *delta = [cal components:NSCalendarUnitDay
-                                     fromDate:startDate
-                                       toDate:endDate
-                                      options:0];
-
-    NSDateComponents *startComponents = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:startDate];
-    NSDateComponents *runnerComponents = [startComponents copy];
-
-    for (NSInteger d = 0; d <= delta.day; d++)
-    {
-        runnerComponents.day = startComponents.day + d;
-        NSDate *date = [cal dateFromComponents:runnerComponents];
-        [EEEBufferedDay uniqueForDate:date calendar:cal inContext:self.mainContext];
-    }
+    [cal eee_enumerateDaysFromStartDate:startDate
+                              toEndDate:endDate
+                              withBlock:^(NSDate *date, NSUInteger idx, BOOL *stop) {
+                                  [EEEBufferedDay uniqueForDate:date calendar:cal inContext:self.mainContext];
+                              }];
 }
 @end

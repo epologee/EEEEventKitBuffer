@@ -10,11 +10,16 @@
 
 @property(nonatomic, strong, readonly) NSFetchedResultsController *bufferedEventsController;
 
+@property(nonatomic, strong, readonly) EKEventStore *mainEventStore;
+
 - (instancetype)initWithMainEventStore:(EKEventStore *)mainEventStore;
 
 - (NSManagedObjectContext *)newPrivateContext;
 
-- (void)bufferEventsForDate:(NSDate *)date withinCalendars:(NSArray *)calendars;
+- (void)bufferEventsFromStartDate:(NSDate *)startDate toEndDate:(NSDate *)endDate withinEventCalendars:(NSArray *)calendars;
+
+- (void)bufferEventsForDate:(NSDate *)date withinEventCalendars:(NSArray *)calendars;
 
 - (void)prepareDaysFromStartDate:(NSDate *)startDate toEndDate:(NSDate *)endDate;
+
 @end
