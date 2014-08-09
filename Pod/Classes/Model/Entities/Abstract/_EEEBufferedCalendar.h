@@ -5,6 +5,7 @@
 #import "EEEBaseBufferedManagedObject.h"
 
 extern const struct EEEBufferedCalendarAttributes {
+	__unsafe_unretained NSString *calendarIdentifier;
 	__unsafe_unretained NSString *calendarType;
 	__unsafe_unretained NSString *colorRGB;
 	__unsafe_unretained NSString *title;
@@ -23,6 +24,7 @@ extern const struct EEEBufferedCalendarFetchedProperties {
 
 
 
+
 @interface EEEBufferedCalendarID : NSManagedObjectID {}
 @end
 
@@ -31,6 +33,16 @@ extern const struct EEEBufferedCalendarFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (EEEBufferedCalendarID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSString* calendarIdentifier;
+
+
+
+//- (BOOL)validateCalendarIdentifier:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -94,6 +106,12 @@ extern const struct EEEBufferedCalendarFetchedProperties {
 @end
 
 @interface _EEEBufferedCalendar (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSString*)primitiveCalendarIdentifier;
+- (void)setPrimitiveCalendarIdentifier:(NSString*)value;
+
+
 
 
 - (NSNumber*)primitiveCalendarType;

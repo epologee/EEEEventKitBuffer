@@ -1,6 +1,7 @@
 #import <EventKit/EventKit.h>
 #import <Kiwi/KWValue.h>
 #import "EEEBufferedEvent.h"
+#import "EEEBufferedCalendar.h"
 
 @interface EEEBufferedEvent ()
 @end
@@ -63,6 +64,13 @@
             [self setValue:value forKey:key];
         }
     }];
+
+    BOOL created = NO;
+    EEEBufferedCalendar *calendar = [EEEBufferedCalendar bufferCalendar:event.calendar created:&created inContext:self.managedObjectContext];
+    if (calendar != self.calendar)
+    {
+        self.calendar = calendar;
+    }
 }
 
 //- (void)setValue:(id)value forKey:(NSString *)key

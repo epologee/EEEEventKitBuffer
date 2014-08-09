@@ -4,6 +4,7 @@
 #import "_EEEBufferedCalendar.h"
 
 const struct EEEBufferedCalendarAttributes EEEBufferedCalendarAttributes = {
+	.calendarIdentifier = @"calendarIdentifier",
 	.calendarType = @"calendarType",
 	.colorRGB = @"colorRGB",
 	.title = @"title",
@@ -55,6 +56,13 @@ const struct EEEBufferedCalendarFetchedProperties EEEBufferedCalendarFetchedProp
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic calendarIdentifier;
+
+
 
 
 
