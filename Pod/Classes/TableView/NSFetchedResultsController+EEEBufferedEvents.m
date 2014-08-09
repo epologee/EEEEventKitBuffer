@@ -1,5 +1,6 @@
 #import "NSFetchedResultsController+EEEBufferedEvents.h"
 #import "EEEBufferedEvent.h"
+#import "EEEBufferedDay.h"
 
 @implementation NSFetchedResultsController (EEEBufferedEvents)
 
@@ -11,8 +12,14 @@
 
 - (NSString *)eee_titleForHeaderInSection:(NSInteger)section
 {
+    EEEBufferedDay *day = [self eee_bufferedDayForSection:section];
+    return day.titleDate;
+}
+
+- (EEEBufferedDay *)eee_bufferedDayForSection:(NSInteger)section
+{
     id <NSFetchedResultsSectionInfo> sectionInfo = self.sections[(NSUInteger) section];
-    return sectionInfo.name;
+    return [EEEBufferedDay existingDayForNumericDay:[sectionInfo.name integerValue] inContext:self.managedObjectContext];
 }
 
 - (EEEBufferedEvent *)eee_bufferedEventAtIndexPath:(NSIndexPath *)indexPath

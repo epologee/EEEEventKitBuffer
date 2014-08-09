@@ -62,4 +62,9 @@
     return bufferedDay;
 }
 
++ (instancetype)existingDayForNumericDay:(NSInteger)numericDay inContext:(NSManagedObjectContext *)ctx
+{
+    return [self existingEntityWithValue:@(numericDay) forKey:EEEBufferedDayAttributes.numericDay inContext:ctx];
+}
+
 @end

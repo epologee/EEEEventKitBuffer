@@ -4,6 +4,8 @@
 
 + (instancetype)uniqueForDate:(NSDate *)date calendar:(NSCalendar *)calendar inContext:(NSManagedObjectContext *)ctx;
 
++ (instancetype)existingDayForNumericDay:(NSInteger)numericDay inContext:(NSManagedObjectContext *)ctx;
+
 - (void)updateForDate:(NSDate *)date calendar:(NSCalendar *)calendar;
 
 @end

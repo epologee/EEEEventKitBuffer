@@ -9,6 +9,10 @@
 
 + (instancetype)uniqueEntityWithKeyedValues:(NSDictionary *)keyedValues created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx;
 
++ (instancetype)existingEntityWithValue:(id)value forKey:(NSString *)key inContext:(NSManagedObjectContext *)ctx;
+
++ (instancetype)existingEntityWithKeyedValues:(NSDictionary *)keyedValues inContext:(NSManagedObjectContext *)ctx;
+
 + (NSFetchRequest *)fetchRequest;
 
 @end

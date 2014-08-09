@@ -19,6 +19,28 @@
 
 + (instancetype)uniqueEntityWithKeyedValues:(NSDictionary *)keyedValues created:(BOOL *)created inContext:(NSManagedObjectContext *)ctx
 {
+    EEEBaseBufferedManagedObject *entity = [self existingEntityWithKeyedValues:keyedValues inContext:ctx];
+    if (entity)
+    {
+        if (created) *created = NO;
+        return entity;
+    }
+
+    entity = [self insertInManagedObjectContext:ctx];
+    [keyedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
+        [entity setValue:value forKey:key];
+    }];
+    if (created) *created = YES;
+    return entity;
+}
+
++ (instancetype)existingEntityWithValue:(id)value forKey:(NSString *)key inContext:(NSManagedObjectContext *)ctx
+{
+    return [self existingEntityWithKeyedValues:@{key : value} inContext:ctx];
+}
+
++ (instancetype)existingEntityWithKeyedValues:(NSDictionary *)keyedValues inContext:(NSManagedObjectContext *)ctx
+{
     NSFetchRequest *request = [self fetchRequest];
     NSMutableArray *formats = [NSMutableArray array];
     NSMutableArray *values = [NSMutableArray array];
@@ -37,16 +59,10 @@
     if ([existingEvents count] == 1)
     {
         entity = [existingEvents lastObject];
-        if (created) *created = NO;
         return entity;
     }
 
-    entity = [self insertInManagedObjectContext:ctx];
-    [keyedValues enumerateKeysAndObjectsUsingBlock:^(NSString *key, id value, BOOL *stop) {
-        [entity setValue:value forKey:key];
-    }];
-    if (created) *created = YES;
-    return entity;
+    return nil;
 }
 
 + (NSFetchRequest *)fetchRequest

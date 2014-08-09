@@ -17,6 +17,17 @@
     return dayComponents.year * 10000 + dayComponents.month * 100 + dayComponents.day;
 }
 
+- (NSDate *)eee_dateForNumericDay:(NSInteger)numericDay
+{
+    NSDateComponents *dayComponents = [[NSDateComponents alloc] init];
+    dayComponents.timeZone = self.timeZone;
+    dayComponents.year = numericDay / 10000;
+    dayComponents.month = (numericDay - dayComponents.year * 10000) / 100;
+    dayComponents.day = (numericDay - dayComponents.year * 10000 - dayComponents.month * 100);
+
+    return [self dateFromComponents:dayComponents];
+}
+
 - (BOOL)eee_date:(NSDate *)date isOnSameDayAs:(NSDate *)otherDate
 {
     if (!otherDate) return NO;

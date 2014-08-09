@@ -6,6 +6,8 @@
 
 - (NSInteger)eee_numericDayForDate:(NSDate *)date;
 
+- (NSDate *)eee_dateForNumericDay:(NSInteger)numericDay;
+
 - (BOOL)eee_date:(NSDate *)date isOnSameDayAs:(NSDate *)otherDate;
 
 - (NSDate *)eee_firstSecondOfDate:(NSDate *)date;

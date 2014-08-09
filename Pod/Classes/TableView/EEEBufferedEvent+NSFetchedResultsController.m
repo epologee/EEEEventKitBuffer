@@ -12,7 +12,7 @@
             [NSSortDescriptor sortDescriptorWithKey:EEEBufferedEventAttributes.startDate ascending:YES]
     ];
 
-    NSString *sectionNameKeyPath = [NSString stringWithFormat:@"%@.%@", EEEBufferedEventRelationships.day, EEEBufferedDayAttributes.titleDate];
+    NSString *sectionNameKeyPath = [NSString stringWithFormat:@"%@.%@", EEEBufferedEventRelationships.day, EEEBufferedDayAttributes.numericDay];
     NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:request
                                                                                  managedObjectContext:ctx
                                                                                    sectionNameKeyPath:sectionNameKeyPath
