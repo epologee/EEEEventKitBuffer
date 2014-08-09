@@ -1,8 +1,14 @@
 #import <CoreData/CoreData.h>
+#import <EventKit/EventKit.h>
 #import "EEEEventKitBufferModel.h"
+#import <EEEEventKitBuffer/EEEBufferedEvent.h>
+#import <EEEEventKitBuffer/EEEBufferedEvent+NSFetchedResultsController.h>
+#import <EEEEventKitBuffer/EKEventStore+EEEBuffering.h>
 
 @interface EEEEventKitBufferModel ()
 
+@property(nonatomic, strong) EKEventStore *mainEventStore;
+@property(nonatomic, strong, readwrite) NSFetchedResultsController *bufferedEventsController;
 @property(nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property(nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property(nonatomic, strong) NSBundle *modelBundle;
@@ -10,6 +16,28 @@
 @end
 
 @implementation EEEEventKitBufferModel
+
+- (instancetype)initWithMainEventStore:(EKEventStore *)mainEventStore
+{
+    self = [super init];
+
+    if (self)
+    {
+        _mainEventStore = mainEventStore;
+    }
+
+    return self;
+}
+
+- (NSFetchedResultsController *)bufferedEventsController
+{
+    if (!_bufferedEventsController)
+    {
+        self.bufferedEventsController = [EEEBufferedEvent fetchedResultsControllerInContext:self.mainContext];
+    }
+
+    return _bufferedEventsController;
+}
 
 - (NSManagedObjectContext *)mainContext
 {
@@ -75,6 +103,14 @@
     }
 
     return _modelBundle;
+}
+
+- (void)bufferEventsForDate:(NSDate *)date withinCalendars:(NSArray *)calendars
+{
+    [self.mainEventStore eee_bufferEventsFromStartDate:date
+                                             toEndDate:date
+                                             calendars:calendars
+                                             inContext:self.mainContext];
 }
 
 @end

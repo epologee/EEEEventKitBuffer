@@ -52,10 +52,10 @@
         a = components[1];
     }
 
-    NSInteger rgb = 0;
-    rgb += ((NSInteger) (r * 0xFF) & 0xFF) << 16;
-    rgb += ((NSInteger) (g * 0xFF) & 0xFF) << 8;
-    rgb += ((NSInteger) (b * 0xFF) & 0xFF);
+    int32_t rgb = 0;
+    rgb += ((int32_t) (r * 0xFF) & 0xFF) << 16;
+    rgb += ((int32_t) (g * 0xFF) & 0xFF) << 8;
+    rgb += ((int32_t) (b * 0xFF) & 0xFF);
 
     if (self.colorRGBValue != rgb)
     {
