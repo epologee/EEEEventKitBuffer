@@ -1,0 +1,1 @@
+../../../../Pod/Classes/TableView/NSFetchedResultsController+EEEBufferedEvents.h

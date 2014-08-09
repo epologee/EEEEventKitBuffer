@@ -24,6 +24,7 @@
 		E420708AC72351CA3994D265 /* EEEBufferedDaySpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E42072FEB4780E88F5CFFCE6 /* EEEBufferedDaySpec.m */; };
 		E420719E97B25CD2A58610F7 /* EEEEventStoreHelperEventWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E420767206E6A5A533170694 /* EEEEventStoreHelperEventWrapper.m */; };
 		E42071FB01195AB1DF9F7A2B /* EEEEventKitBufferModelSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E420793B56B576F0D1E6D073 /* EEEEventKitBufferModelSpec.m */; };
+		E420723E999699C57B3E9E10 /* EEEBufferedCalendarSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207B6C3BE33BFD894DDA50 /* EEEBufferedCalendarSpec.m */; };
 		E42074EC8ED6260996BB87E2 /* NSDate+EEEHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207CFF92EE549A9B476807 /* NSDate+EEEHelper.m */; };
 		E4207844B55383F28324489E /* EEETestsAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207BAA65E381A020769783 /* EEETestsAppDelegate.m */; };
 		E42078AA588B8C45168BE62B /* EEEEventStoreHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4207351BADD940C470F2A25 /* EEEEventStoreHelper.m */; };
@@ -88,6 +89,7 @@
 		E4207AD9728C8AC0EB319FBC /* EEEEventKitBufferModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventKitBufferModel.h; sourceTree = "<group>"; };
 		E4207B050DCC821926E6ECEC /* EEEBufferedDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEBufferedDay.h; sourceTree = "<group>"; };
 		E4207B52D866DCAB9A1A88F8 /* _EEEBufferedCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _EEEBufferedCalendar.h; sourceTree = "<group>"; };
+		E4207B6C3BE33BFD894DDA50 /* EEEBufferedCalendarSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEEBufferedCalendarSpec.m; sourceTree = "<group>"; };
 		E4207BAA65E381A020769783 /* EEETestsAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EEETestsAppDelegate.m; sourceTree = "<group>"; };
 		E4207BD75A7F0C003BCE6BD3 /* EEEEventStoreHelperEventWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EEEEventStoreHelperEventWrapper.h; sourceTree = "<group>"; };
 		E4207BF7406BF4C12B88FF82 /* EEEBufferedEvent+NSFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EEEBufferedEvent+NSFetchedResultsController.m"; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				E420764E4AA9461627CF14CD /* EEEBufferedCalendar.h */,
 				E420756E246D0547A16333EC /* EEEBufferedCalendar.m */,
 				E4207A8933C514AFE624B1AC /* EEEBufferedEventSpec.m */,
+				E4207B6C3BE33BFD894DDA50 /* EEEBufferedCalendarSpec.m */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				E42071FB01195AB1DF9F7A2B /* EEEEventKitBufferModelSpec.m in Sources */,
 				E42078D535C9820FC055CA01 /* EEEBufferedEventSpec.m in Sources */,
 				E420708AC72351CA3994D265 /* EEEBufferedDaySpec.m in Sources */,
+				E420723E999699C57B3E9E10 /* EEEBufferedCalendarSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
