@@ -4,6 +4,8 @@
 
 - (BOOL)eee_date:(NSDate *)date isEqualToOtherDate:(NSDate *)otherDate forUnits:(NSCalendarUnit)units;
 
+- (NSInteger)eee_numericDayForDate:(NSDate *)date;
+
 - (BOOL)eee_date:(NSDate *)date isOnSameDayAs:(NSDate *)otherDate;
 
 - (NSDate *)eee_firstSecondOfDate:(NSDate *)date;

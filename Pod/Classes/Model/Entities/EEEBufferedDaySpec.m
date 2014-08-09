@@ -39,9 +39,9 @@ SPEC_BEGIN(EEEBufferedDaySpec)
                             startDate(date).
                             title([NSString stringWithFormat:@"Appointment #%li", (long) runner.day]).
                             location(@"Halfweg").
+                            notes(@"Some notes").
                             allDay(YES).
                             hasAttendees(YES).
-                            hasNotes(YES).
                             hasRecurrenceRules(YES).
                             addRelativeAlarm(-15 * 60);
 

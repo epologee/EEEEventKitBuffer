@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Calendar" representedClassName="EEEBufferedCalendar" syncable="YES">
+        <attribute name="calendarType" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="colorRGB" optional="YES" attributeType="Integer 32" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="calendar" inverseEntity="Event" syncable="YES"/>
+    </entity>
     <entity name="Day" representedClassName="EEEBufferedDay" syncable="YES">
         <attribute name="dateGMT" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="numericDay" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -13,16 +19,19 @@
         <attribute name="eventIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="hasAlarms" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="hasAttendees" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="hasNotes" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="hasNotes" optional="YES" transient="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="hasRecurrenceRules" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numericDay" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="calendar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Calendar" inverseName="events" inverseEntity="Calendar" syncable="YES"/>
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="events" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="-90" positionY="53" width="128" height="103"/>
-        <element name="Event" positionX="124" positionY="-16" width="128" height="238"/>
+        <element name="Day" positionX="-99" positionY="92" width="128" height="103"/>
+        <element name="Event" positionX="160" positionY="-73" width="128" height="268"/>
+        <element name="Calendar" positionX="-99" positionY="-72" width="128" height="103"/>
     </elements>
 </model>

@@ -38,7 +38,8 @@
     NSArray *strings = @[
             EEEBufferedEventAttributes.title,
             EEEBufferedEventAttributes.location,
-            EEEBufferedEventAttributes.eventIdentifier
+            EEEBufferedEventAttributes.eventIdentifier,
+            EEEBufferedEventAttributes.notes
     ];
     [strings enumerateObjectsUsingBlock:^(NSString *key, NSUInteger idx, BOOL *stop) {
         NSString *value = [event valueForKey:key];
@@ -52,7 +53,6 @@
             EEEBufferedEventAttributes.allDay,
             EEEBufferedEventAttributes.hasAlarms,
             EEEBufferedEventAttributes.hasAttendees,
-            EEEBufferedEventAttributes.hasNotes,
             EEEBufferedEventAttributes.hasRecurrenceRules,
             EEEBufferedEventAttributes.availability
     ];
@@ -63,6 +63,17 @@
             [self setValue:value forKey:key];
         }
     }];
+}
+
+//- (void)setValue:(id)value forKey:(NSString *)key
+//{
+//    NSLog(@"%@ > %@", key, value);
+//    [super setValue:value forKey:key];
+//}
+
+- (NSNumber *)hasNotes
+{
+    return @(![self.notes isEqualToString:@""] || self.notes == nil);
 }
 
 @end

@@ -13,12 +13,14 @@ const struct EEEBufferedEventAttributes EEEBufferedEventAttributes = {
 	.hasNotes = @"hasNotes",
 	.hasRecurrenceRules = @"hasRecurrenceRules",
 	.location = @"location",
+	.notes = @"notes",
 	.numericDay = @"numericDay",
 	.startDate = @"startDate",
 	.title = @"title",
 };
 
 const struct EEEBufferedEventRelationships EEEBufferedEventRelationships = {
+	.calendar = @"calendar",
 	.day = @"day",
 };
 
@@ -270,6 +272,13 @@ const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties
 
 
 
+@dynamic notes;
+
+
+
+
+
+
 @dynamic numericDay;
 
 
@@ -309,6 +318,10 @@ const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties
 
 
 
+
+@dynamic calendar;
+
+	
 
 @dynamic day;
 

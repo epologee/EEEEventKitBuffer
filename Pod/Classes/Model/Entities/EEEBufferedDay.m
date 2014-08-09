@@ -1,5 +1,6 @@
 #import "EEEBufferedDay.h"
 #import "NSCalendar+EEEDateFormatting.h"
+#import "NSCalendar+EEEDateCalculations.h"
 
 @interface EEEBufferedDay ()
 
@@ -16,8 +17,7 @@
 + (instancetype)uniqueForDate:(NSDate *)date calendar:(NSCalendar *)calendar inContext:(NSManagedObjectContext *)ctx
 {
     BOOL created = NO;
-    NSDateComponents *dayComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
-    NSInteger numericDay = dayComponents.year * 10000 + dayComponents.month * 100 + dayComponents.day;
+    NSInteger numericDay = [calendar eee_numericDayForDate:date];
     EEEBufferedDay *bufferedDay = [EEEBufferedDay uniqueEntityWithValue:@(numericDay)
                                                                  forKey:EEEBufferedDayAttributes.numericDay
                                                                 created:&created

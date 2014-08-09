@@ -54,6 +54,14 @@
     };
 }
 
+- (id <EEEBlockChainEvent> (^)(NSString *))notes
+{
+    return ^id <EEEBlockChainEvent>(NSString *notes) {
+        self.event.notes = notes;
+        return self;
+    };
+}
+
 - (id <EEEBlockChainEvent> (^)(BOOL))allDay
 {
     return ^id <EEEBlockChainEvent>(BOOL allDay) {
@@ -66,14 +74,6 @@
 {
     return ^id <EEEBlockChainEvent>(BOOL hasAttendees) {
         [self.event stub:@selector(hasAttendees) andReturn:theValue(hasAttendees)];
-        return self;
-    };
-}
-
-- (id <EEEBlockChainEvent> (^)(BOOL))hasNotes
-{
-    return ^id <EEEBlockChainEvent>(BOOL hasNotes) {
-        [self.event stub:@selector(hasNotes) andReturn:theValue(hasNotes)];
         return self;
     };
 }

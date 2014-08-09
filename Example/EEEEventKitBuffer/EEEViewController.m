@@ -41,9 +41,9 @@
                     startDate(date).
                     title([NSString stringWithFormat:@"Appointment #%li", (long) i]).
                     location(@"Halfweg").
+                    notes(@"Some notes").
                     allDay(YES).
                     hasAttendees(YES).
-                    hasNotes(YES).
                     hasRecurrenceRules(YES).
                     addRelativeAlarm(-15 * 60);
 
@@ -55,9 +55,9 @@
                 endDate([NSDate eee_dateForYear:2014 month:8 day:4]).
                 title(@"Multi Appointment").
                 location(@"Halfweg").
+                notes(@"Some notes").
                 allDay(YES).
                 hasAttendees(YES).
-                hasNotes(YES).
                 hasRecurrenceRules(YES).
                 addRelativeAlarm(-15 * 60);
 

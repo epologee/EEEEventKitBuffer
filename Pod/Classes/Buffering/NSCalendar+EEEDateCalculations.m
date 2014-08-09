@@ -11,6 +11,12 @@
     return equality;
 }
 
+- (NSInteger)eee_numericDayForDate:(NSDate *)date
+{
+    NSDateComponents *dayComponents = [self components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
+    return dayComponents.year * 10000 + dayComponents.month * 100 + dayComponents.day;
+}
+
 - (BOOL)eee_date:(NSDate *)date isOnSameDayAs:(NSDate *)otherDate
 {
     if (!otherDate) return NO;
