@@ -6,7 +6,8 @@
 const struct EEEBufferedDayAttributes EEEBufferedDayAttributes = {
 	.dateGMT = @"dateGMT",
 	.numericDay = @"numericDay",
-	.title = @"title",
+	.titleDate = @"titleDate",
+	.titleDay = @"titleDay",
 };
 
 const struct EEEBufferedDayRelationships EEEBufferedDayRelationships = {
@@ -87,7 +88,14 @@ const struct EEEBufferedDayFetchedProperties EEEBufferedDayFetchedProperties = {
 
 
 
-@dynamic title;
+@dynamic titleDate;
+
+
+
+
+
+
+@dynamic titleDay;
 
 
 

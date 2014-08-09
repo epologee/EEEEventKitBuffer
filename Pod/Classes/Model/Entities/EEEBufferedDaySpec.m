@@ -79,8 +79,12 @@ SPEC_BEGIN(EEEBufferedDaySpec)
                     [[bufferedDay.numericDay should] equal:@20140801];
                 });
 
-                it(@"sets title, to display", ^{
-                    [[bufferedDay.title should] equal:@"August 1, 2014"];
+                it(@"sets titleDate, to display", ^{
+                    [[bufferedDay.titleDate should] equal:@"August 1, 2014"];
+                });
+
+                it(@"sets titleDay, to display", ^{
+                    [[bufferedDay.titleDay should] equal:@"Friday"];
                 });
             });
         });

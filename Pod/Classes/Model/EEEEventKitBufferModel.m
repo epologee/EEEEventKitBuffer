@@ -17,6 +17,26 @@
 
 @implementation EEEEventKitBufferModel
 
++ (dispatch_queue_t)bufferQueue
+{
+    static dispatch_queue_t bufferQueue;
+    static dispatch_once_t bufferQueueCreation;
+    dispatch_once(&bufferQueueCreation, ^{
+        bufferQueue = dispatch_queue_create("com.epologee.eventkitbuffer.queue", NULL);
+    });
+    return bufferQueue;
+}
+
++ (EKEventStore *)bufferEventStore
+{
+    static dispatch_once_t eventStoreCreation;
+    static EKEventStore *bufferEventStore;
+    dispatch_once(&eventStoreCreation, ^{
+        bufferEventStore = [[EKEventStore alloc] init];
+    });
+    return bufferEventStore;
+}
+
 - (instancetype)initWithMainEventStore:(EKEventStore *)mainEventStore
 {
     self = [super init];
@@ -75,9 +95,7 @@
                                                                                      error:&error];
         if (!store)
         {
-            [[NSException exceptionWithName:@"EEEEventKitBufferModelException"
-                                     reason:@"Could not add store"
-                                   userInfo:@{NSUnderlyingErrorKey : error}] raise];
+            [NSException raise:@"EEEEventKitBufferModelException" format:@"Could not add store: %@", error];
         }
     }
 
@@ -107,10 +125,24 @@
 
 - (void)bufferEventsForDate:(NSDate *)date withinCalendars:(NSArray *)calendars
 {
-    [self.mainEventStore eee_bufferEventsFromStartDate:date
-                                             toEndDate:date
-                                             calendars:calendars
-                                             inContext:self.mainContext];
+    dispatch_async([[self class] bufferQueue], ^{
+        NSManagedObjectContext *ctx = [self newPrivateContext];
+        [[[self class] bufferEventStore] eee_bufferEventsFromStartDate:date
+                                                             toEndDate:date
+                                                             calendars:calendars
+                                                             inContext:ctx];
+        NSError *saveError = nil;
+        if ([ctx save:&saveError])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"Buffering complete");
+            });
+        }
+        else
+        {
+            [NSException raise:@"EEEEventKitBufferModelException" format:@"Could not save context: %@", saveError];
+        }
+    });
 }
 
 @end

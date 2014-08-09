@@ -66,7 +66,7 @@ SPEC_BEGIN(EEEBufferedEventSpec)
                     it(@"location", ^{[[bufferedEvent.location should] equal:event.location];});
                     it(@"notes", ^{[[bufferedEvent.notes should] equal:event.notes];});
                     it(@"startDate", ^{[[bufferedEvent.startDate should] equal:event.startDate];});
-                    it(@"title", ^{[[bufferedEvent.title should] equal:event.title];});
+                    it(@"titleDate", ^{[[bufferedEvent.title should] equal:event.title];});
                 });
             });
         });

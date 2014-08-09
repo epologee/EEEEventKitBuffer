@@ -58,7 +58,7 @@ SPEC_BEGIN(EEEBufferedCalendarSpec)
 
                 describe(@"calendar attributes", ^{
                     it(@"identifier", ^{[[bufferedEvent.calendar.calendarIdentifier should] equal:eventStore.defaultCalendarForNewEvents.calendarIdentifier];});
-                    it(@"title", ^{[[bufferedEvent.calendar.title should] equal:@"Calendar Title"];});
+                    it(@"titleDate", ^{[[bufferedEvent.calendar.title should] equal:@"Calendar Title"];});
                     it(@"color", ^{[[theValue(bufferedEvent.calendar.colorRGBValue) should] equal:theValue(0xFF0000)];});
                     it(@"type", ^{[[theValue(bufferedEvent.calendar.calendarTypeValue) should] equal:theValue(EKCalendarTypeLocal)];});
                 });

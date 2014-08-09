@@ -2,6 +2,7 @@
 
 @interface NSCalendar (EEEDateFormatting)
 
-- (NSDateFormatter *)eee_bufferedDayTitleFormatter;
+- (NSDateFormatter *)eee_bufferedDateFormatter;
 
+- (NSDateFormatter *)eee_bufferedDayFormatter;
 @end

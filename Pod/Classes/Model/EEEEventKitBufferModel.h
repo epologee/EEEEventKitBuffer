@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 
+@class NSFetchedResultsController;
 @class NSManagedObjectContext;
 @class EKEventStore;
 

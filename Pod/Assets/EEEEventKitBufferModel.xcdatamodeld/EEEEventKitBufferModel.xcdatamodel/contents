@@ -10,7 +10,8 @@
     <entity name="Day" representedClassName="EEEBufferedDay" syncable="YES">
         <attribute name="dateGMT" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="numericDay" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="titleDay" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="day" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="EEEBufferedEvent" syncable="YES">
@@ -31,8 +32,8 @@
         <relationship name="day" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Day" inverseName="events" inverseEntity="Day" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Day" positionX="-99" positionY="92" width="128" height="103"/>
-        <element name="Event" positionX="160" positionY="-73" width="128" height="268"/>
         <element name="Calendar" positionX="-99" positionY="-72" width="128" height="118"/>
+        <element name="Day" positionX="-99" positionY="92" width="128" height="118"/>
+        <element name="Event" positionX="160" positionY="-73" width="128" height="268"/>
     </elements>
 </model>

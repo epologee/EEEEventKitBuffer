@@ -7,7 +7,8 @@
 extern const struct EEEBufferedDayAttributes {
 	__unsafe_unretained NSString *dateGMT;
 	__unsafe_unretained NSString *numericDay;
-	__unsafe_unretained NSString *title;
+	__unsafe_unretained NSString *titleDate;
+	__unsafe_unretained NSString *titleDay;
 } EEEBufferedDayAttributes;
 
 extern const struct EEEBufferedDayRelationships {
@@ -18,6 +19,7 @@ extern const struct EEEBufferedDayFetchedProperties {
 } EEEBufferedDayFetchedProperties;
 
 @class EEEBufferedEvent;
+
 
 
 
@@ -60,11 +62,21 @@ extern const struct EEEBufferedDayFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSString* title;
+@property (nonatomic, strong) NSString* titleDate;
 
 
 
-//- (BOOL)validateTitle:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateTitleDate:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSString* titleDay;
+
+
+
+//- (BOOL)validateTitleDay:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -107,8 +119,14 @@ extern const struct EEEBufferedDayFetchedProperties {
 
 
 
-- (NSString*)primitiveTitle;
-- (void)setPrimitiveTitle:(NSString*)value;
+- (NSString*)primitiveTitleDate;
+- (void)setPrimitiveTitleDate:(NSString*)value;
+
+
+
+
+- (NSString*)primitiveTitleDay;
+- (void)setPrimitiveTitleDay:(NSString*)value;
 
 
 
