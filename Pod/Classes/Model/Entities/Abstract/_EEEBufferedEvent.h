@@ -2,7 +2,7 @@
 // Make changes to EEEBufferedEvent.h instead.
 
 #import <CoreData/CoreData.h>
-#import "EEEBaseBufferedManagedObject.h"
+#import "EEEBufferedMarkerEvent.h"
 
 extern const struct EEEBufferedEventAttributes {
 	__unsafe_unretained NSString *allDay;
@@ -22,14 +22,12 @@ extern const struct EEEBufferedEventAttributes {
 
 extern const struct EEEBufferedEventRelationships {
 	__unsafe_unretained NSString *calendar;
-	__unsafe_unretained NSString *day;
 } EEEBufferedEventRelationships;
 
 extern const struct EEEBufferedEventFetchedProperties {
 } EEEBufferedEventFetchedProperties;
 
 @class EEEBufferedCalendar;
-@class EEEBufferedDay;
 
 
 
@@ -48,7 +46,7 @@ extern const struct EEEBufferedEventFetchedProperties {
 @interface EEEBufferedEventID : NSManagedObjectID {}
 @end
 
-@interface _EEEBufferedEvent : EEEBaseBufferedManagedObject {}
+@interface _EEEBufferedEvent : EEEBufferedMarkerEvent {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
@@ -223,13 +221,6 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 
 
-@property (nonatomic, strong) EEEBufferedDay *day;
-
-//- (BOOL)validateDay:(id*)value_ error:(NSError**)error_;
-
-
-
-
 
 @end
 
@@ -342,11 +333,6 @@ extern const struct EEEBufferedEventFetchedProperties {
 
 - (EEEBufferedCalendar*)primitiveCalendar;
 - (void)setPrimitiveCalendar:(EEEBufferedCalendar*)value;
-
-
-
-- (EEEBufferedDay*)primitiveDay;
-- (void)setPrimitiveDay:(EEEBufferedDay*)value;
 
 
 @end

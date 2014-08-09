@@ -21,7 +21,6 @@ const struct EEEBufferedEventAttributes EEEBufferedEventAttributes = {
 
 const struct EEEBufferedEventRelationships EEEBufferedEventRelationships = {
 	.calendar = @"calendar",
-	.day = @"day",
 };
 
 const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties = {
@@ -320,10 +319,6 @@ const struct EEEBufferedEventFetchedProperties EEEBufferedEventFetchedProperties
 
 
 @dynamic calendar;
-
-	
-
-@dynamic day;
 
 	
 

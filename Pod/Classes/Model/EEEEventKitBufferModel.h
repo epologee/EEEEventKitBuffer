@@ -16,4 +16,5 @@
 
 - (void)bufferEventsForDate:(NSDate *)date withinCalendars:(NSArray *)calendars;
 
+- (void)prepareDaysFromStartDate:(NSDate *)startDate toEndDate:(NSDate *)endDate;
 @end

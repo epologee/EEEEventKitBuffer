@@ -18,7 +18,7 @@ extern const struct EEEBufferedDayRelationships {
 extern const struct EEEBufferedDayFetchedProperties {
 } EEEBufferedDayFetchedProperties;
 
-@class EEEBufferedEvent;
+@class EEEBufferedMarkerEvent;
 
 
 
@@ -96,8 +96,8 @@ extern const struct EEEBufferedDayFetchedProperties {
 
 - (void)addEvents:(NSSet*)value_;
 - (void)removeEvents:(NSSet*)value_;
-- (void)addEventsObject:(EEEBufferedEvent*)value_;
-- (void)removeEventsObject:(EEEBufferedEvent*)value_;
+- (void)addEventsObject:(EEEBufferedMarkerEvent*)value_;
+- (void)removeEventsObject:(EEEBufferedMarkerEvent*)value_;
 
 @end
 

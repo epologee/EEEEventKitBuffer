@@ -4,6 +4,7 @@
 #import <EEEEventKitBuffer/EEEBufferedEvent.h>
 #import <EEEEventKitBuffer/EEEBufferedEvent+NSFetchedResultsController.h>
 #import <EEEEventKitBuffer/EKEventStore+EEEBuffering.h>
+#import <EEEEventKitBuffer/EEEBufferedDay.h>
 
 @interface EEEEventKitBufferModel ()
 
@@ -22,7 +23,7 @@
     static dispatch_queue_t bufferQueue;
     static dispatch_once_t bufferQueueCreation;
     dispatch_once(&bufferQueueCreation, ^{
-        bufferQueue = dispatch_queue_create("com.epologee.eventkitbuffer.queue", NULL);
+        bufferQueue = dispatch_queue_create("com.epologee.eventkitbuffer.queue", DISPATCH_QUEUE_SERIAL);
     });
     return bufferQueue;
 }
@@ -145,4 +146,23 @@
     });
 }
 
+- (void)prepareDaysFromStartDate:(NSDate *)startDate toEndDate:(NSDate *)endDate
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+
+    NSDateComponents *delta = [cal components:NSCalendarUnitDay
+                                     fromDate:startDate
+                                       toDate:endDate
+                                      options:0];
+
+    NSDateComponents *startComponents = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:startDate];
+    NSDateComponents *runnerComponents = [startComponents copy];
+
+    for (NSInteger d = 0; d <= delta.day; d++)
+    {
+        runnerComponents.day = startComponents.day + d;
+        NSDate *date = [cal dateFromComponents:runnerComponents];
+        [EEEBufferedDay uniqueForDate:date calendar:cal inContext:self.mainContext];
+    }
+}
 @end
